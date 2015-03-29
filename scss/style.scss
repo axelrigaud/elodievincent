@@ -1,0 +1,105 @@
+@import 'compass';
+
+@font-face{
+    font-family : "Gobold";
+    src : url('../fonts/gobold/Gobold Uplow.ttf');
+    font-weight: bold;
+}
+@font-face{
+    font-family : "Gobold";
+    src : url('../fonts/gobold/Gobold Light.ttf');
+    font-weight: normal;
+}
+*{
+	font-family: "Gobold";
+}
+
+html,body{
+	height: 100%;
+}
+
+ul{
+	padding:0;
+}
+
+//common
+h2{
+	font-size: 26px;
+	margin: 20px;
+	text-transform: uppercase;
+}
+
+//nav
+.navbar-inverse{
+	background-color:#000;
+}
+
+//splash
+
+section.splash{
+	display:flex;
+	justify-content:center;
+	align-items: center;
+	height: 100%;
+	h1{
+		letter-spacing: 5px;
+		font-size: 33px;
+		
+  		height: 36px;
+  		
+  		text-transform: uppercase;
+  		font-weight: bold;
+	}
+	background:url('../img/splash.jpg') center center;
+	@include background-size(cover);
+}
+
+//portfolio
+
+section.portfolio{
+	h2{
+		margin-bottom: 6px;
+	}
+	.filter-item{
+		margin-right: 29px;
+		@include transition(0.3s);
+	}
+	.filter-list{
+		margin-left: 20px;
+	}
+	.filter-item{
+		text-transform: uppercase;
+		padding-right: 4px;
+	}
+	.filter-item:hover {
+    	background: #000;
+    	color: #FFF;
+		min-height:600px;
+		cursor:pointer;
+	}
+	.portfolio-item{
+		width: 25%;
+		img{
+			width: 100%;
+		}
+	}
+
+	@media (max-width:500px) {
+		.portfolio-item{
+			width: 50%;
+		}
+		
+	}
+
+	.image-big{
+		//width: 100%;
+		img{
+			width: 100%;
+		}
+	}
+
+}
+
+section.contact{
+	min-height:600px;
+}

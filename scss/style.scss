@@ -57,9 +57,7 @@ section.splash{
 //portfolio
 
 section.portfolio{
-	h2{
-		margin-bottom: 6px;
-	}
+
 	.filter-item{
 		margin-right: 29px;
 		@include transition(0.3s);
@@ -70,6 +68,7 @@ section.portfolio{
 	.filter-item{
 		text-transform: uppercase;
 		padding-right: 4px;
+
 	}
 	.filter-item:hover {
     	background: #000;
@@ -77,11 +76,42 @@ section.portfolio{
 		min-height:600px;
 		cursor:pointer;
 	}
+	.portfolio-list{
+		font-size:0; // inline block li margin fix
+	}
 	.portfolio-item{
+		font-size:12px;
 		width: 25%;
+		display:inline-block;
 		img{
 			width: 100%;
 		}
+		&:hover figcaption{
+			opacity:0.8;
+		}
+		&:hover figcaption h3{
+			top:38%;
+		}
+	}
+	.portfolio-cover{
+		position: relative;
+	}
+	figcaption{
+		@include transition(0.4s);
+		position: absolute;
+  		bottom: 0;
+  		top: 0;
+  		width: 100%;
+  		height: 100%;
+  		background-color:#000;
+  		opacity:0;
+  		h3{
+  			@include transition(0.5s);
+  			text-align: center;
+  			position: relative;
+  			top: 42%;
+  			color:#FFF;
+  		}
 	}
 
 	@media (max-width:500px) {

@@ -25,39 +25,39 @@
     				<i class="filter-item">Video</i>
     			</ul>
     		</div>
-    		<div class="portfolio-container">
-    			<div class="portfolio-item">
-    				<img src="img/Alphabet.jpg" alt="">
-    			</div>
-    			<div class="portfolio-item">
-    				<img src="img/dior.png" alt="">
-    			</div>
-    			<div class="portfolio-item">
-    				<img src="img/UK2.jpg" alt="">
-    			</div>
-    			<div class="portfolio-item">
-    				<img src="img/Mem.jpg" alt="">
-    			</div>
-    			<div class="portfolio-item">
-    				<img src="img/Lion.jpg" alt="">
-    			</div>
-    			<div class="portfolio-item">
-    				<img src="img/EverydayHoliday.jpg" alt="">
-    			</div>
-    			<div class="portfolio-item">
-    				<img src="img/elite.png" alt="">
-    			</div>
-    			<div class="portfolio-item illustration">
-    				<img src="img/bd.png" alt="">
-    			</div>
-    			<div class="portfolio-item illustration">
-    				<img src="img/GarethPugh.jpg" alt="">
-    			</div>
-    			<div class="portfolio-item illustration">
-    				<img src="img/Chlapak.jpg" alt="">
-    			</div>
-    		</div>
-    		<div class="ajax"></div>
+            
+                <script id="portfolio-template" type="text/x-handlebars-template">
+                    <ul class="portfolio-list">
+                        {{#each projects}}
+                        <li class="portfolio-item {{#each this.fields}}{{this}} {{/each}}">
+                            <a href="#" data-project_id="{{this.id}}">
+                                <figure class="portfolio-cover" title="{{this.name}}">
+                                    {{#if this.covers.[404]}}
+                                    <img class="portfolio-image" src="{{this.covers.[404]}}" alt="">
+
+                                    {{else}}
+                                        {{#if this.covers.[230]}}
+                                        <img class="portfolio-image" src="{{this.covers.[230]}}" alt="">
+                                        {{else}}
+                                        <img class="portfolio-image" src="{{this.covers.[202]}}" alt="">
+                                        {{/if}}
+                                    {{/if}}
+                                    <figcaption>
+                                        <h3 class="portfolio-title">{{this.name}}</h2>
+                                    </figcaption>
+                                </figure>
+                                </a>
+                        </li>
+                        {{/each}}
+                    </ul>  
+                </script>
+            <div id="projects-grid"></div>
+            <script id="viewer-template" type="text/x-handlebars-template">
+                {{#each this.modules}}
+                  <img src="{{this.src}}">
+                {{/each}}
+            </script>
+            <div id="project-viewer"></div>
     	</section>
         <footer>
 		    <div class="navbar navbar-inverse navbar-fixed-bottom">
@@ -88,7 +88,7 @@
 		<script src="js/jquery-2.1.3.min.js"></script>
 		<script src="js/bootstrap.js"></script>
 		<script src="js/isotope.pkgd.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>

@@ -10,9 +10,17 @@
     src : url('../fonts/gobold/Gobold Light.ttf');
     font-weight: normal;
 }
+
 *{
-	font-family: "Gobold";
+	font-family: 'Economica', sans-serif;
+	font-weight: normal;
 }
+
+h1,h2,h3,h4,h5,.filter-item,a{
+	font-family: "Gobold";
+	text-transform: uppercase;
+}
+
 
 html,body{
 	height: 100%;
@@ -27,6 +35,7 @@ h2{
 	font-size: 26px;
 	margin: 20px;
 	text-transform: uppercase;
+	font-weight: bold;
 }
 
 //nav
@@ -37,20 +46,24 @@ h2{
 //splash
 
 section.splash{
-	display:flex;
-	justify-content:center;
-	align-items: center;
+
+	overflow:hidden;
 	height: 100%;
 	h1{
-		letter-spacing: 5px;
-		font-size: 33px;
-		
+		color:#FFF;
+		letter-spacing: 1px;
+		font-size: 24px;
+
+		bottom:30px;
   		height: 36px;
+  		width: 155px;
+  		margin:0 auto;
+  		margin-top:500px;
   		
   		text-transform: uppercase;
-  		font-weight: bold;
+
 	}
-	background:url('../img/splash.jpg') center center;
+	background:url('../img/acceuil.jpg') center center;
 	@include background-size(cover);
 }
 
@@ -127,7 +140,21 @@ section.portfolio{
 			width: 100%;
 		}
 	}
+	.project-title{
+		font-size: 28px;
+		text-transform: uppercase;
+		font-weight: bold;
+		margin:20px;
+	}
 
+	.project-description{
+		font-size: 18px;
+		margin: 20px;
+	}
+
+}
+section.about{
+	min-height: 600px;
 }
 
 section.contact{

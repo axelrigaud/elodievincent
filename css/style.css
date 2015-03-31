@@ -8,55 +8,65 @@
   src: url("../fonts/gobold/Gobold Light.ttf");
   font-weight: normal;
 }
-/* line 13, ../scss/style.scss */
+/* line 14, ../scss/style.scss */
 * {
-  font-family: "Gobold";
+  font-family: 'Economica', sans-serif;
+  font-weight: normal;
 }
 
-/* line 17, ../scss/style.scss */
+/* line 19, ../scss/style.scss */
+h1, h2, h3, h4, h5, .filter-item, a {
+  font-family: "Gobold";
+  text-transform: uppercase;
+}
+
+/* line 25, ../scss/style.scss */
 html, body {
   height: 100%;
 }
 
-/* line 21, ../scss/style.scss */
+/* line 29, ../scss/style.scss */
 ul {
   padding: 0;
 }
 
-/* line 26, ../scss/style.scss */
+/* line 34, ../scss/style.scss */
 h2 {
   font-size: 26px;
   margin: 20px;
   text-transform: uppercase;
+  font-weight: bold;
 }
 
-/* line 33, ../scss/style.scss */
+/* line 42, ../scss/style.scss */
 .navbar-inverse {
   background-color: #000;
 }
 
-/* line 39, ../scss/style.scss */
+/* line 48, ../scss/style.scss */
 section.splash {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  overflow: hidden;
   height: 100%;
-  background: url("../img/splash.jpg") center center;
+  background: url("../img/acceuil.jpg") center center;
   -moz-background-size: cover;
   -o-background-size: cover;
   -webkit-background-size: cover;
   background-size: cover;
 }
-/* line 44, ../scss/style.scss */
+/* line 52, ../scss/style.scss */
 section.splash h1 {
-  letter-spacing: 5px;
-  font-size: 33px;
+  color: #FFF;
+  letter-spacing: 1px;
+  font-size: 24px;
+  bottom: 30px;
   height: 36px;
+  width: 155px;
+  margin: 0 auto;
+  margin-top: 500px;
   text-transform: uppercase;
-  font-weight: bold;
 }
 
-/* line 61, ../scss/style.scss */
+/* line 74, ../scss/style.scss */
 section.portfolio .filter-item {
   margin-right: 29px;
   -moz-transition: 0.3s;
@@ -64,49 +74,49 @@ section.portfolio .filter-item {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
-/* line 65, ../scss/style.scss */
+/* line 78, ../scss/style.scss */
 section.portfolio .filter-list {
   margin-left: 20px;
 }
-/* line 68, ../scss/style.scss */
+/* line 81, ../scss/style.scss */
 section.portfolio .filter-item {
   text-transform: uppercase;
   padding-right: 4px;
 }
-/* line 73, ../scss/style.scss */
+/* line 86, ../scss/style.scss */
 section.portfolio .filter-item:hover {
   background: #000;
   color: #FFF;
   min-height: 600px;
   cursor: pointer;
 }
-/* line 79, ../scss/style.scss */
+/* line 92, ../scss/style.scss */
 section.portfolio .portfolio-list {
   font-size: 0;
 }
-/* line 82, ../scss/style.scss */
+/* line 95, ../scss/style.scss */
 section.portfolio .portfolio-item {
   font-size: 12px;
   width: 25%;
   display: inline-block;
 }
-/* line 86, ../scss/style.scss */
+/* line 99, ../scss/style.scss */
 section.portfolio .portfolio-item img {
   width: 100%;
 }
-/* line 89, ../scss/style.scss */
+/* line 102, ../scss/style.scss */
 section.portfolio .portfolio-item:hover figcaption {
   opacity: 0.8;
 }
-/* line 92, ../scss/style.scss */
+/* line 105, ../scss/style.scss */
 section.portfolio .portfolio-item:hover figcaption h3 {
   top: 38%;
 }
-/* line 96, ../scss/style.scss */
+/* line 109, ../scss/style.scss */
 section.portfolio .portfolio-cover {
   position: relative;
 }
-/* line 99, ../scss/style.scss */
+/* line 112, ../scss/style.scss */
 section.portfolio figcaption {
   -moz-transition: 0.4s;
   -o-transition: 0.4s;
@@ -120,7 +130,7 @@ section.portfolio figcaption {
   background-color: #000;
   opacity: 0;
 }
-/* line 108, ../scss/style.scss */
+/* line 121, ../scss/style.scss */
 section.portfolio figcaption h3 {
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
@@ -132,17 +142,34 @@ section.portfolio figcaption h3 {
   color: #FFF;
 }
 @media (max-width: 500px) {
-  /* line 118, ../scss/style.scss */
+  /* line 131, ../scss/style.scss */
   section.portfolio .portfolio-item {
     width: 50%;
   }
 }
-/* line 126, ../scss/style.scss */
+/* line 139, ../scss/style.scss */
 section.portfolio .image-big img {
   width: 100%;
 }
+/* line 143, ../scss/style.scss */
+section.portfolio .project-title {
+  font-size: 28px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin: 20px;
+}
+/* line 150, ../scss/style.scss */
+section.portfolio .project-description {
+  font-size: 18px;
+  margin: 20px;
+}
 
-/* line 133, ../scss/style.scss */
+/* line 156, ../scss/style.scss */
+section.about {
+  min-height: 600px;
+}
+
+/* line 160, ../scss/style.scss */
 section.contact {
   min-height: 600px;
 }

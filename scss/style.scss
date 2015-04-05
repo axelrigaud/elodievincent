@@ -40,6 +40,7 @@ h2{
 
 //loader
 .loader-wrapper {
+  background:url('../img/loader.gif') no-repeat center center;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -55,7 +56,7 @@ h2{
 
 //splash
 
-section.splash{
+.section.splash{
 
 	overflow:hidden;
 	height: 100%;
@@ -73,13 +74,13 @@ section.splash{
   		text-transform: uppercase;
 
 	}
-	background:url('../img/acceuil.jpg') center center;
+	background:url('../img/splash.jpg') center center;
 	@include background-size(cover);
 }
 
 //portfolio
 
-section.portfolio{
+.section.portfolio{
 
 	.filter-item{
 		margin-right: 29px;
@@ -104,7 +105,19 @@ section.portfolio{
 	}
 	.portfolio-item{
 		font-size:12px;
-		width: 25%;
+		width: 16.6666666%;
+		@media screen and (max-width:1090px) {
+			width: 20%;
+		}
+		@media screen and (max-width:875px) {
+			width: 25%;
+		}
+		@media screen and (max-width:475px) {
+			width: 33.3333333334%;
+		}
+		@media screen and (max-width:275px) {
+			width: 50%;
+		}
 		display:inline-block;
 		img{
 			width: 100%;
@@ -137,13 +150,6 @@ section.portfolio{
   		}
 	}
 
-	@media (max-width:500px) {
-		.portfolio-item{
-			width: 50%;
-		}
-		
-	}
-
 	.image-big{
 		//width: 100%;
 		img{
@@ -165,11 +171,43 @@ section.portfolio{
 		text-align: center;
 
 	}
+	#modal-container {
+	position: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0,0,0,0.8);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+	}
+	#modal-inner{
+	height:100%;
+	}
+	.modal-image-container{
+		height: 400px;	
+		width: auto;
+		img{
+			height:100%;
+		}
+	}
+	#close{
+		position:absolute;
+		top:10px;
+		right:10px;
+		font-size: 24px;
+		color:#FFF;
+	}
 }
-section.about{
+.section.about{
 	min-height: 600px;
 }
 
-section.contact{
+.section.contact{
 	min-height:600px;
 }

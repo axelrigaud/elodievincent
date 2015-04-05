@@ -5,6 +5,8 @@ jQuery(document).ready(function() {
     $('.loader-wrapper').fadeOut(300);
     $('.splash').fadeIn(300);
   });
+
+
   
   //Behance stuff
   var apiKey  = 'zdinRP5GJarvCOa3PWiQxYb94dPyc9Xx';
@@ -24,17 +26,27 @@ jQuery(document).ready(function() {
       $('#projects-grid').html(result);
   };
 
-  function setViewerTemplate(id){
+  function setModalTemplate(id){
     var projectData = JSON.parse(sessionStorage.getItem('behanceProject'+id)),
-      rawTemplate = $('#viewer-template').html(),
+      rawTemplate = $('#modal-template').html(),
       template = Handlebars.compile(rawTemplate),
       result = template(projectData.project);
     //append view
-    $('#project-viewer').html(result);
+    $('#modal-container').html(result);
+    $('#modal-container').css({
+      "opacity":1,
+      "pointer-events": "auto"
+    });
     //set carrousel
     $(".owl-carousel").owlCarousel({
       singleItem:true
     });
+    $("#close").on('click',function(){
+      $('#modal-container').css({
+      "opacity":0,
+      "pointer-events":"none"
+    });
+    })
 
     
 
@@ -42,17 +54,17 @@ jQuery(document).ready(function() {
 
   function showProject(id){
     if(sessionStorage.getItem('behanceProject'+id)){
-      setViewerTemplate(id);
+      setModalTemplate(id);
     }
     else{
       $.getJSON(behanceProjectAPI(id),function(project){
         var data = JSON.stringify(project);
         sessionStorage.setItem('behanceProject'+id,data);
-        setViewerTemplate(id);
+        setModalTemplate(id);
       })
     }
   }
-
+  var setPortfolio = function(){
   if(sessionStorage.getItem('behanceProjects')) {
       setPortfolioTemplate();
   } else {
@@ -61,18 +73,25 @@ jQuery(document).ready(function() {
           sessionStorage.setItem('behanceProjects', data);
           setPortfolioTemplate();
       });
-  };
+  }}
+  setPortfolio();
+
+  //fullpage.js
+  // $('#fullpage').fullpage({fitToSection : false,
+  //                         verticalCentered : true,
+  //                         afterRender : setPortfolio});
 
   //interface
 
   $('a').on('click',function(e){
     e.preventDefault();
-    //scroll to viewer
-    $('html, body').animate({
-      scrollTop: $("#project-viewer").offset().top
-      }, 500);
+    //scroll to Modal
+    // $('html, body').animate({
+    //   scrollTop: $("#project-Modal").offset().top
+    //   }, 500);
     showProject($(this).data("project_id"));
   });
+
 
   var $container = $('.portfolio-container');
 

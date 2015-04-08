@@ -33,7 +33,10 @@ ul{
 //common
 h2{
 	font-size: 26px;
-	margin: 20px;
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
 	text-transform: uppercase;
 	font-weight: bold;
 }
@@ -60,24 +63,44 @@ h2{
 
 	overflow:hidden;
 	height: 100%;
-	h1{
+	position:relative;
+	
+	background:url('../img/fullsplash.jpg');
+	@include background-size(cover);
+}
+.baseline-l1{
 		color:#FFF;
 		letter-spacing: 1px;
 		font-size: 24px;
-
-		bottom:30px;
-  		height: 36px;
-  		width: 155px;
-  		margin:0 auto;
-  		margin-top:500px;
+		position:absolute;
+		
+  		bottom:7%;
+  		left:0;	
+  		right:0;
   		
   		text-transform: uppercase;
 
 	}
-	background:url('../img/splash.jpg') center center;
-	@include background-size(cover);
-}
+	.baseline-l2{
+		color:#FFF;
+		letter-spacing: 1px;
+		font-size: 16px;
+		position:absolute;
+		
+  		bottom:7%;
+  		left:0;
+  		right:0;	
+  		
+  		text-transform: uppercase;
 
+	}
+.social-item{
+	height: 50px;
+	width: 50px;
+}
+.facebook{
+	background:url('../img/FB.svg');
+}
 //portfolio
 
 .section.portfolio{
@@ -87,11 +110,13 @@ h2{
 		@include transition(0.3s);
 	}
 	.filter-list{
-		margin-left: 20px;
+		text-align: center;
 	}
 	.filter-item{
 		text-transform: uppercase;
 		padding-right: 4px;
+		font-style: normal;
+
 
 	}
 	.filter-item:hover {
@@ -126,7 +151,7 @@ h2{
 			opacity:0.8;
 		}
 		&:hover figcaption h3{
-			top:38%;
+			top:37%;
 		}
 	}
 	.portfolio-cover{
@@ -145,8 +170,11 @@ h2{
   			@include transition(0.5s);
   			text-align: center;
   			position: relative;
-  			top: 42%;
+  			top: 45%;
   			color:#FFF;
+  			font-size: 19px;
+  			line-height: 24px;
+  			margin: 2px;
   		}
 	}
 
@@ -161,6 +189,7 @@ h2{
 		text-transform: uppercase;
 		font-weight: bold;
 		margin:20px;
+
 	}
 
 	.project-description{
@@ -188,6 +217,10 @@ h2{
 	}
 	#modal-inner{
 	height:100%;
+	text-align: center;
+	}
+	.project-description,.project-title{
+		color:#FFF;
 	}
 	.modal-image-container{
 		height: 400px;	
@@ -204,10 +237,92 @@ h2{
 		color:#FFF;
 	}
 }
+//about
 .section.about{
-	min-height: 600px;
+	min-height: 430px;
 }
-
+.professional-experiences-container{
+	width: 392px;
+	text-align: center;
+	margin-left: 30px;
+	float:left;
+}
+.professional-experiences-header{
+	font-size: 17px;
+	font-weight: bold;
+	margin-bottom: 0;
+}
+.professional-experiences-separator{
+	height: 26px;
+	img{
+		height: 100%;
+	}
+}
+.professional-experiences-list{
+	list-style-type: none
+}
+.professional-experiences-item{
+	margin-bottom: 10px;
+}
+.professional-experiences-l1{
+	margin-bottom: -5px;
+}
+.when{
+	font-style: italic;
+}
+.where{
+	text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: Gobold;
+  margin-left: 5px;
+}
+.what{
+	font-weight: bold;
+	margin-bottom: 4px;
+}
+.hello-container{
+  background: url("../img/rond.jpg") center center;
+  width: 358px;
+  height: 300px;
+  height: 335px;
+  float:left;
+  color:#FFF;
+  text-align: center;
+  margin-top: 10px;
+}
+.hello-l1,.hello-l2,.hello-l3,.hello-l4,.hello-l5,.hello-l6,.hello-l7{
+  color:#FFF;
+  margin-bottom: 0px;
+}
+.hello-l1{
+	font-size: 29px;
+	margin-top: 62px;
+}
+.hello-l2,.hello-l3,.hello-l4,.hello-l5,.hello-l6,.hello-l7{
+  font-size:18px;
+  margin-bottom: -4px;
+}
+//contact
 .section.contact{
 	min-height:600px;
+}
+.contact-inner{
+	min-height:500px;
+	width: 600px;
+	margin:0 auto;
+
+}
+.contact-left-container{
+	width: 290px;
+	float:left;
+	text-transform: uppercase;
+	text-align: right;
+	margin-top: 20px;
+}
+.contact-right-container{
+	width: 283px;
+  float: right;
+  height: 420px;
+  background: url("../img/form.jpg") center center;
 }

@@ -12,7 +12,7 @@ jQuery(document).ready(function() {
   var apiKey  = 'zdinRP5GJarvCOa3PWiQxYb94dPyc9Xx';
   var userID  = 'hellovincent';
 
-  var behanceProjectsAPI = 'http://www.behance.net/v2/users/'+ userID +'/projects?callback=?&api_key='+ apiKey;
+  var behanceProjectsAPI = 'http://www.behance.net/v2/users/'+ userID +'/projects?callback=?&api_key='+ apiKey+'&per_page=25';
 
   var behanceProjectAPI = function(id){
     return 'http://www.behance.net/v2/projects/'+id+'?callback=?&api_key='+ apiKey;
@@ -24,13 +24,37 @@ jQuery(document).ready(function() {
           template    = Handlebars.compile(rawTemplate),
           result      = template(projectsData);
       $('#projects-grid').html(result);
+      createLinks();
   };
 
+  function prepareProject(rawProjectData){
+    var projectData = {};
+    projectData.modules = [];
+    projectData.name = rawProjectData.project.name;
+    projectData.description = rawProjectData.project.description;
+    for(i=0;i<rawProjectData.project.modules.length;i++){
+      projectData.modules[i] = {}; // init module so we don't get undefined
+      if (rawProjectData.project.modules[i].type === "image"){
+        projectData.modules[i].isImage = true;
+        projectData.modules[i].src = rawProjectData.project.modules[i].src;
+
+      }
+      else{
+        projectData.modules[i].isEmbed = true;
+        projectData.modules[i].embed = rawProjectData.project.modules[i].embed
+        
+      }
+    }
+    console.log(projectData.modules);
+    return projectData;
+  }
+
   function setModalTemplate(id){
-    var projectData = JSON.parse(sessionStorage.getItem('behanceProject'+id)),
+    var rawProjectData = JSON.parse(sessionStorage.getItem('behanceProject'+id)),
       rawTemplate = $('#modal-template').html(),
       template = Handlebars.compile(rawTemplate),
-      result = template(projectData.project);
+      projectData = prepareProject(rawProjectData),
+      result = template(projectData);
     //append view
     $('#modal-container').html(result);
     $('#modal-container').css({
@@ -74,6 +98,16 @@ jQuery(document).ready(function() {
           setPortfolioTemplate();
       });
   }}
+  function createLinks(){
+    $('a').on('click',function(e){
+      e.preventDefault();
+      //scroll to Modal
+      // $('html, body').animate({
+      //   scrollTop: $("#project-Modal").offset().top
+      //   }, 500);
+      showProject($(this).data("project_id"));
+    });
+  }
   setPortfolio();
 
   //fullpage.js
@@ -83,14 +117,6 @@ jQuery(document).ready(function() {
 
   //interface
 
-  $('a').on('click',function(e){
-    e.preventDefault();
-    //scroll to Modal
-    // $('html, body').animate({
-    //   scrollTop: $("#project-Modal").offset().top
-    //   }, 500);
-    showProject($(this).data("project_id"));
-  });
 
 
   var $container = $('.portfolio-container');

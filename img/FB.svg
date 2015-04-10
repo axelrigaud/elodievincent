@@ -4,14 +4,9 @@
 <svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 595.3 595.3" enable-background="new 0 0 595.3 595.3" xml:space="preserve">
 <style>
-	.st1{
+.st1{
 	fill:#FFF;
-	width:10px;
-	height:10px;
-	}
-	.st1:hover .st1{
-	fill:blue;
-	}
+}
 </style>
 <path class="st1" d="M0.2,0v595.3h332.9V370.7h-73.8v-90.1h73.8v-66.4c0-77.1,44.6-119.1,109.9-119.1c31.3,0,58.1,2.5,65.9,3.6v80.6h-45.2
 	c-35.5,0-42.4,17.8-42.4,43.9v57.5h84.6l-11,90.1h-73.6v224.5h174V0H0.2z"/>

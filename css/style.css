@@ -62,7 +62,7 @@ h2 {
   overflow: hidden;
   height: 100%;
   position: relative;
-  background: url("../img/fullsplash.jpg");
+  background: url("../img/fullsplash.jpg") center center;
   -moz-background-size: cover;
   -o-background-size: cover;
   -webkit-background-size: cover;
@@ -70,14 +70,19 @@ h2 {
 }
 
 /* line 71, ../scss/style.scss */
+.baseline-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4%;
+  text-align: center;
+}
+
+/* line 78, ../scss/style.scss */
 .baseline-l1 {
   color: #FFF;
   letter-spacing: 1px;
   font-size: 24px;
-  position: absolute;
-  bottom: 7%;
-  left: 0;
-  right: 0;
   text-transform: uppercase;
 }
 
@@ -86,25 +91,33 @@ h2 {
   color: #FFF;
   letter-spacing: 1px;
   font-size: 16px;
-  position: absolute;
-  bottom: 7%;
-  left: 0;
-  right: 0;
   text-transform: uppercase;
 }
 
-/* line 97, ../scss/style.scss */
+/* line 90, ../scss/style.scss */
 .social-item {
-  height: 50px;
-  width: 50px;
+  display: inline-block;
+  margin-right: 5px;
+  height: 30px;
+  width: 30px;
 }
 
-/* line 101, ../scss/style.scss */
+/* line 96, ../scss/style.scss */
 .facebook {
   background: url("../img/FB.svg");
 }
 
-/* line 108, ../scss/style.scss */
+/* line 99, ../scss/style.scss */
+.behance {
+  background: url("../img/Be.svg");
+}
+
+/* line 102, ../scss/style.scss */
+.instagram {
+  background: url("../img/Insta.svg");
+}
+
+/* line 109, ../scss/style.scss */
 .section.portfolio .filter-item {
   margin-right: 29px;
   -moz-transition: 0.3s;
@@ -112,74 +125,74 @@ h2 {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
-/* line 112, ../scss/style.scss */
+/* line 113, ../scss/style.scss */
 .section.portfolio .filter-list {
   text-align: center;
 }
-/* line 115, ../scss/style.scss */
+/* line 116, ../scss/style.scss */
 .section.portfolio .filter-item {
   text-transform: uppercase;
   padding-right: 4px;
   font-style: normal;
 }
-/* line 122, ../scss/style.scss */
+/* line 123, ../scss/style.scss */
 .section.portfolio .filter-item:hover {
   background: #000;
   color: #FFF;
   min-height: 600px;
   cursor: pointer;
 }
-/* line 128, ../scss/style.scss */
+/* line 129, ../scss/style.scss */
 .section.portfolio .portfolio-list {
   font-size: 0;
 }
-/* line 131, ../scss/style.scss */
+/* line 132, ../scss/style.scss */
 .section.portfolio .portfolio-item {
   font-size: 12px;
   width: 16.6666666%;
   display: inline-block;
 }
 @media screen and (max-width: 1090px) {
-  /* line 131, ../scss/style.scss */
+  /* line 132, ../scss/style.scss */
   .section.portfolio .portfolio-item {
     width: 20%;
   }
 }
 @media screen and (max-width: 875px) {
-  /* line 131, ../scss/style.scss */
+  /* line 132, ../scss/style.scss */
   .section.portfolio .portfolio-item {
     width: 25%;
   }
 }
 @media screen and (max-width: 475px) {
-  /* line 131, ../scss/style.scss */
+  /* line 132, ../scss/style.scss */
   .section.portfolio .portfolio-item {
     width: 33.3333333334%;
   }
 }
 @media screen and (max-width: 275px) {
-  /* line 131, ../scss/style.scss */
+  /* line 132, ../scss/style.scss */
   .section.portfolio .portfolio-item {
     width: 50%;
   }
 }
-/* line 147, ../scss/style.scss */
+/* line 148, ../scss/style.scss */
 .section.portfolio .portfolio-item img {
   width: 100%;
 }
-/* line 150, ../scss/style.scss */
+/* line 151, ../scss/style.scss */
 .section.portfolio .portfolio-item:hover figcaption {
   opacity: 0.8;
 }
-/* line 153, ../scss/style.scss */
+/* line 154, ../scss/style.scss */
 .section.portfolio .portfolio-item:hover figcaption h3 {
   top: 37%;
 }
-/* line 157, ../scss/style.scss */
+/* line 158, ../scss/style.scss */
 .section.portfolio .portfolio-cover {
   position: relative;
 }
-/* line 160, ../scss/style.scss */
+/* line 161, ../scss/style.scss */
 .section.portfolio figcaption {
   -moz-transition: 0.4s;
   -o-transition: 0.4s;
@@ -193,7 +206,7 @@ h2 {
   background-color: #000;
   opacity: 0;
 }
-/* line 169, ../scss/style.scss */
+/* line 170, ../scss/style.scss */
 .section.portfolio figcaption h3 {
   -moz-transition: 0.5s;
   -o-transition: 0.5s;
@@ -207,27 +220,27 @@ h2 {
   line-height: 24px;
   margin: 2px;
 }
-/* line 183, ../scss/style.scss */
+/* line 184, ../scss/style.scss */
 .section.portfolio .image-big img {
   width: 100%;
 }
-/* line 187, ../scss/style.scss */
+/* line 188, ../scss/style.scss */
 .section.portfolio .project-title {
   font-size: 28px;
   text-transform: uppercase;
   font-weight: bold;
   margin: 20px;
 }
-/* line 195, ../scss/style.scss */
+/* line 196, ../scss/style.scss */
 .section.portfolio .project-description {
   font-size: 18px;
   margin: 20px;
 }
-/* line 199, ../scss/style.scss */
+/* line 200, ../scss/style.scss */
 .section.portfolio .owl-item div {
   text-align: center;
 }
-/* line 203, ../scss/style.scss */
+/* line 204, ../scss/style.scss */
 .section.portfolio #modal-container {
   position: fixed;
   font-family: Arial, Helvetica, sans-serif;
@@ -243,25 +256,25 @@ h2 {
   transition: opacity 400ms ease-in;
   pointer-events: none;
 }
-/* line 218, ../scss/style.scss */
+/* line 219, ../scss/style.scss */
 .section.portfolio #modal-inner {
   height: 100%;
   text-align: center;
 }
-/* line 222, ../scss/style.scss */
+/* line 223, ../scss/style.scss */
 .section.portfolio .project-description, .section.portfolio .project-title {
   color: #FFF;
 }
-/* line 225, ../scss/style.scss */
+/* line 226, ../scss/style.scss */
 .section.portfolio .modal-image-container {
   height: 400px;
   width: auto;
 }
-/* line 228, ../scss/style.scss */
+/* line 229, ../scss/style.scss */
 .section.portfolio .modal-image-container img {
   height: 100%;
 }
-/* line 232, ../scss/style.scss */
+/* line 233, ../scss/style.scss */
 .section.portfolio #close {
   position: absolute;
   top: 10px;
@@ -270,56 +283,96 @@ h2 {
   color: #FFF;
 }
 
-/* line 241, ../scss/style.scss */
+/* line 243, ../scss/style.scss */
 .section.about {
   min-height: 430px;
+  position: relative;
 }
 
-/* line 244, ../scss/style.scss */
-.professional-experiences-container {
+/* line 247, ../scss/style.scss */
+.professional-experiences-container, .education-container {
   width: 392px;
   text-align: center;
-  margin-left: 30px;
+  width: 38%;
+}
+
+/* line 252, ../scss/style.scss */
+.professional-experiences-container {
   float: left;
 }
 
-/* line 250, ../scss/style.scss */
-.professional-experiences-header {
+/* line 255, ../scss/style.scss */
+.education-container {
+  float: right;
+}
+
+/* line 258, ../scss/style.scss */
+.hello-container {
+  height: 335px;
+  background: url("../img/rond.jpg") center center no-repeat;
+  color: #FFF;
+  text-align: center;
+  margin-top: 10px;
+  left: 0;
+  right: 0;
+  position: absolute;
+  overflow: hidden;
+}
+
+/* line 269, ../scss/style.scss */
+.hello-inner {
+  margin-top: 62px;
+}
+
+@media screen and (max-width: 1050px) {
+  /* line 273, ../scss/style.scss */
+  .professional-experiences-container, .education-container {
+    float: none;
+    width: 100%;
+  }
+
+  /* line 277, ../scss/style.scss */
+  .hello-container {
+    position: static;
+  }
+}
+/* line 281, ../scss/style.scss */
+.professional-experiences-header, .education-header {
   font-size: 17px;
   font-weight: bold;
   margin-bottom: 0;
 }
 
-/* line 255, ../scss/style.scss */
-.professional-experiences-separator {
-  height: 26px;
+/* line 286, ../scss/style.scss */
+.professional-experiences-separator, .education-separator {
+  height: 12px;
 }
-/* line 257, ../scss/style.scss */
-.professional-experiences-separator img {
+/* line 288, ../scss/style.scss */
+.professional-experiences-separator img, .education-separator img {
   height: 100%;
 }
 
-/* line 261, ../scss/style.scss */
-.professional-experiences-list {
+/* line 292, ../scss/style.scss */
+.professional-experiences-list, .education-list {
   list-style-type: none;
 }
 
-/* line 264, ../scss/style.scss */
-.professional-experiences-item {
+/* line 295, ../scss/style.scss */
+.professional-experiences-item, .education-item {
   margin-bottom: 10px;
 }
 
-/* line 267, ../scss/style.scss */
-.professional-experiences-l1 {
+/* line 298, ../scss/style.scss */
+.professional-experiences-l1, .education-l1 {
   margin-bottom: -5px;
 }
 
-/* line 270, ../scss/style.scss */
+/* line 301, ../scss/style.scss */
 .when {
   font-style: italic;
 }
 
-/* line 273, ../scss/style.scss */
+/* line 304, ../scss/style.scss */
 .where {
   text-transform: uppercase;
   font-weight: bold;
@@ -328,67 +381,81 @@ h2 {
   margin-left: 5px;
 }
 
-/* line 280, ../scss/style.scss */
+/* line 311, ../scss/style.scss */
 .what {
   font-weight: bold;
   margin-bottom: 4px;
 }
 
-/* line 284, ../scss/style.scss */
-.hello-container {
-  background: url("../img/rond.jpg") center center;
-  width: 358px;
-  height: 300px;
-  height: 335px;
-  float: left;
-  color: #FFF;
-  text-align: center;
-  margin-top: 10px;
-}
-
-/* line 294, ../scss/style.scss */
+/* line 316, ../scss/style.scss */
 .hello-l1, .hello-l2, .hello-l3, .hello-l4, .hello-l5, .hello-l6, .hello-l7 {
   color: #FFF;
   margin-bottom: 0px;
 }
 
-/* line 298, ../scss/style.scss */
+/* line 320, ../scss/style.scss */
 .hello-l1 {
   font-size: 29px;
-  margin-top: 62px;
 }
 
-/* line 302, ../scss/style.scss */
+/* line 323, ../scss/style.scss */
 .hello-l2, .hello-l3, .hello-l4, .hello-l5, .hello-l6, .hello-l7 {
   font-size: 18px;
   margin-bottom: -4px;
 }
 
-/* line 307, ../scss/style.scss */
+/* line 329, ../scss/style.scss */
 .section.contact {
   min-height: 600px;
 }
 
-/* line 310, ../scss/style.scss */
+/* line 332, ../scss/style.scss */
 .contact-inner {
   min-height: 500px;
   width: 600px;
   margin: 0 auto;
 }
 
-/* line 316, ../scss/style.scss */
+/* line 338, ../scss/style.scss */
 .contact-left-container {
-  width: 290px;
   float: left;
+}
+
+/* line 341, ../scss/style.scss */
+.contact-left-inner {
+  width: 290px;
   text-transform: uppercase;
   text-align: right;
   margin-top: 20px;
 }
 
-/* line 323, ../scss/style.scss */
+/* line 347, ../scss/style.scss */
 .contact-right-container {
-  width: 283px;
   float: right;
+}
+
+/* line 350, ../scss/style.scss */
+.contact-right-inner {
+  width: 283px;
+  margin: 0 auto;
   height: 420px;
   background: url("../img/form.jpg") center center;
+}
+
+@media screen and (max-width: 800px) {
+  /* line 357, ../scss/style.scss */
+  .contact-left-inner {
+    text-align: center;
+    margin: 0 auto;
+  }
+
+  /* line 361, ../scss/style.scss */
+  .contact-left-container, .contact-right-container {
+    float: none;
+  }
+
+  /* line 364, ../scss/style.scss */
+  .contact-inner {
+    width: auto;
+  }
 }

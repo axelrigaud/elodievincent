@@ -24,12 +24,15 @@ jQuery(document).ready(function() {
     for (var i=0;i<rawProjectsData.projects.length;i++){
       projectsData[i] = {};
       projectsData[i].name = rawProjectsData.projects[i].name;
+      projectsData[i].id = rawProjectsData.projects[i].id;
       projectsData[i].cover = rawProjectsData.projects[i].covers["404"];
       projectsData[i].fields = [];
-      if (rawProjectsData.projects[i].owners.fields){
-        for (var j=0;j<rawProjectsData.projects[i].owners.fields.length;j++){
+      
+      if (rawProjectsData.projects[i].fields){
+        console.log('test');
+        for (var j=0;j<rawProjectsData.projects[i].fields.length;j++){
           
-          switch (rawProjectsData.projects[i].owners.fields[j]){
+          switch (rawProjectsData.projects[i].fields[j]){
             case 'Editorial Design':
               projectsData[i].fields[j] = 'print';
               break;
@@ -50,9 +53,10 @@ jQuery(document).ready(function() {
               break;
           }
         }
+        
       }
     }
-    console.log(projectsData);
+
     return projectsData;
 
   }
@@ -109,7 +113,7 @@ jQuery(document).ready(function() {
       $('#modal-container').css({
       "opacity":0,
       "pointer-events":"none"
-    });
+      });
     })
 
     
@@ -159,30 +163,43 @@ jQuery(document).ready(function() {
 
 
 
-  var $container = $('.portfolio-container');
+  var $container = $('#projects-grid');
 
   $container.isotope({
     itemSelector: '.portfolio-item',
     layoutMode: 'fitRows',
   });
 
+  $container.imagesLoaded( function() {
+    $container.isotope('layout');
+  });
+
+  $('.all-filter').click(function(){
+    $container.isotope({filter: '*'});
+  });
+
+  $('.print-filter').click(function(){
+    $container.isotope({filter: '.print'});
+  });
+
+  $('.web-filter').click(function(){
+    $container.isotope({filter: '.web'});
+  });
+
   $('.illustration-filter').click(function(){
     $container.isotope({filter: '.illustration'});
   });
 
-  $('.portfolio-item').click(function(){
-    $container.fadeOut('slow',function(){
-      target='portfolio';
-      scrollTo(target,function(){
-        $.get('./portfolio/showpackage.html',function(data){
-          $('section.portfolio').html(data);
-          });
-        });
-    });
-  })
+  $('.typographie-filter').click(function(){
+    $container.isotope({filter: '.typographie'});
+  });
 
-  function scrollTo(target,callback){
-    $('html, body').animate( { scrollTop: $('.'+target).offset().top }, 750 );
-    return callback;
-  }
+  $('.video-filter').click(function(){
+    $container.isotope({filter: '.video'});
+  });
+
+  $('.mode-filter').click(function(){
+    $container.isotope({filter: '.mode'});
+  });
+
 });

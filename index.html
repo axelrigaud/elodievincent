@@ -30,23 +30,26 @@
           </ul>
         </div>
       </div>
-      
+       <div id="modal-container"></div>
       <div class="portfolio section">
         <h2>Portfolio</h2>
         <div class="filters-container">
           <ul class="filter-list">
-            <i class="filter-item">Tout</i>
-            <i class="filter-item illustration-filter">Print</i>
-            <i class="filter-item">Web</i>
-            <i class="filter-item">Illustration</i>
-            <i class="filter-item">Typographie</i>
-            <i class="filter-item">Vidéo</i>
+            <i class="filter-item all-filter">Tout</i>
+            <i class="filter-item print-filter">Print</i>
+            <i class="filter-item web-filter">Web</i>
+            <i class="filter-item illustration-filter">Illustration</i>
+            <i class="filter-item typographie-filter">Typographie</i>
+            <i class="filter-item video-filter">Vidéo</i>
+            <i class="filter-item mode-filter">Mode</i>
           </ul>
         </div>
         <div id="projects-grid"></div>
-        <div id="modal-container"></div>
+        
+        
       </div>
-      
+
+     
       
       <div class="about section">
 
@@ -204,18 +207,10 @@
       <script id="portfolio-template" type="text/x-handlebars-template">
         <ul class="portfolio-list">
           {{#each this}}
-            <li class="portfolio-item {{#each this.fields}}{{this}} {{/each}}">
+            <li class="portfolio-item {{#each this.fields}}{{{this}}} {{/each}}">
               <a href="#" data-project_id="{{this.id}}">
                 <figure class="portfolio-cover" title="{{this.name}}">
-                  {{#if this.covers.[404]}}
-                  <img class="portfolio-image" src="{{this.covers.[404]}}" alt="">
-                  {{else}}
-                      {{#if this.covers.[230]}}
-                      <img class="portfolio-image" src="{{this.covers.[230]}}" alt="">
-                      {{else}}
-                      <img class="portfolio-image" src="{{this.covers.[202]}}" alt="">
-                      {{/if}}
-                  {{/if}}
+                  <img class="portfolio-image" src="{{{this.cover}}}" alt="{{{this.name}}}">
                   <figcaption>
                       <h3 class="portfolio-title">{{this.name}}</h3>
                   </figcaption>
@@ -228,6 +223,7 @@
       
 
   <script src="js/jquery-2.1.3.min.js"></script>
+  <script src="js/imagesloaded.pkgd.min.js"></script>
   <script src="js/isotope.pkgd.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.3.0/handlebars.min.js"></script>
   <script src="owl-carousel/owl.carousel.js"></script>

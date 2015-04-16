@@ -18,11 +18,51 @@ jQuery(document).ready(function() {
     return 'http://www.behance.net/v2/projects/'+id+'?callback=?&api_key='+ apiKey;
   };
 
+  function preparePortfolio(rawProjectsData){
+    var projectsData = [];
+
+    for (var i=0;i<rawProjectsData.projects.length;i++){
+      projectsData[i] = {};
+      projectsData[i].name = rawProjectsData.projects[i].name;
+      projectsData[i].cover = rawProjectsData.projects[i].covers["404"];
+      projectsData[i].fields = [];
+      if (rawProjectsData.projects[i].owners.fields){
+        for (var j=0;j<rawProjectsData.projects[i].owners.fields.length;j++){
+          
+          switch (rawProjectsData.projects[i].owners.fields[j]){
+            case 'Editorial Design':
+              projectsData[i].fields[j] = 'print';
+              break;
+            case 'Web Design':
+              projectsData[i].fields[j] = 'web';
+              break;
+            case 'Illustration':
+              projectsData[i].fields[j] = 'illustration';
+              break;
+            case 'Typography':
+              projectsData[i].fields[j] = 'typographie';
+              break;
+            case 'Animation':
+              projectsData[i].fields[j] = 'video';
+              break;
+            case 'Fashion':
+              projectsData[i].fields[j] = 'mode';
+              break;
+          }
+        }
+      }
+    }
+    console.log(projectsData);
+    return projectsData;
+
+  }
+
   function setPortfolioTemplate() {
-      var projectsData = JSON.parse(sessionStorage.getItem('behanceProjects')),
+      var rawProjectsData = JSON.parse(sessionStorage.getItem('behanceProjects')),
           rawTemplate = $('#portfolio-template').html(),
-          template    = Handlebars.compile(rawTemplate),
-          result      = template(projectsData);
+          template    = Handlebars.compile(rawTemplate);
+      projectsData = preparePortfolio(rawProjectsData);
+      var result = template(projectsData);
       $('#projects-grid').html(result);
       createLinks();
   };

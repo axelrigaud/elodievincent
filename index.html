@@ -203,7 +203,7 @@
 
       <script id="portfolio-template" type="text/x-handlebars-template">
         <ul class="portfolio-list">
-          {{#each projects}}
+          {{#each this}}
             <li class="portfolio-item {{#each this.fields}}{{this}} {{/each}}">
               <a href="#" data-project_id="{{this.id}}">
                 <figure class="portfolio-cover" title="{{this.name}}">

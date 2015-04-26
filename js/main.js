@@ -5,8 +5,6 @@ jQuery(document).ready(function() {
     $('.loader-wrapper').fadeOut(300);
     $('.splash').fadeIn(300);
   });
-
-
   
   //Behance stuff
   var apiKey  = 'zdinRP5GJarvCOa3PWiQxYb94dPyc9Xx';
@@ -80,7 +78,7 @@ jQuery(document).ready(function() {
       projectData.modules[i] = {}; // init module so we don't get undefined
       if (rawProjectData.project.modules[i].type === "image"){
         projectData.modules[i].isImage = true;
-        projectData.modules[i].src = rawProjectData.project.modules[i].src;
+        projectData.modules[i].src = rawProjectData.project.modules[i].sizes.original;
 
       }
       else{
@@ -115,9 +113,6 @@ jQuery(document).ready(function() {
       "pointer-events":"none"
       });
     })
-
-    
-
   };
 
   function showProject(id){
@@ -143,38 +138,24 @@ jQuery(document).ready(function() {
       });
   }}
   function createLinks(){
-    $('a').on('click',function(e){
+    $('.portfolio-item a').on('click',function(e){
       e.preventDefault();
-      //scroll to Modal
-      // $('html, body').animate({
-      //   scrollTop: $("#project-Modal").offset().top
-      //   }, 500);
       showProject($(this).data("project_id"));
     });
   }
   setPortfolio();
 
-  //fullpage.js
-  // $('#fullpage').fullpage({fitToSection : false,
-  //                         verticalCentered : true,
-  //                         afterRender : setPortfolio});
-
-  //interface
 
 
-
-  var $container = $('#projects-grid');
-
-  $container.isotope({
-    itemSelector: '.portfolio-item',
-    layoutMode: 'fitRows',
-  });
-
-  $container.imagesLoaded( function() {
-    $container.isotope('layout');
-  });
-
-  $('.all-filter').click(function(){
+  setTimeout(function(){  var $container = $('#projects-grid');
+    $container.isotope({
+      itemSelector: '.portfolio-item',
+      layoutMode: 'fitRows',
+    });
+    $container.imagesLoaded( function() {
+      $container.isotope('layout');
+    });
+    $('.all-filter').click(function(){
     $container.isotope({filter: '*'});
   });
 
@@ -201,5 +182,17 @@ jQuery(document).ready(function() {
   $('.mode-filter').click(function(){
     $container.isotope({filter: '.mode'});
   });
+  },1000);
 
+  //FORMS
+  $('input').on('focus',function(){
+    $(this).parent().addClass('input--filled');
+  })
+  $('input').on('blur',function(){
+
+    if ($(this).val() === ''){
+      console.log('champ vide');
+      $(this).parent().removeClass('input--filled');
+    }
+  })
 });

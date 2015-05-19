@@ -146,7 +146,7 @@ jQuery(document).ready(function() {
   setPortfolio();
 
 
-
+  $(window).on("load", function(){
   setTimeout(function(){  var $container = $('#projects-grid');
     $container.isotope({
       itemSelector: '.portfolio-item',
@@ -182,7 +182,8 @@ jQuery(document).ready(function() {
   $('.mode-filter').click(function(){
     $container.isotope({filter: '.mode'});
   });
-  },1000);
+  },3000);
+  });
 
   //FORMS
   $('input').on('focus',function(){

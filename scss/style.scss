@@ -24,6 +24,7 @@ h1,h2,h3,h4,h5,.filter-item,a{
 
 html,body{
   height: 100%;
+  overflow-x:hidden;
 }
 
 ul{
@@ -64,7 +65,7 @@ h2{
   height: 100%;
   position:relative;
 
-  background:#111 url('../img/fullsplash.jpg') center center no-repeat;
+  background:url('../img/fullsplash.jpg') center center no-repeat;
   @include background-size(cover);
   @media screen and (min-width:3911px) {
     @include background-size(cover);
@@ -368,6 +369,7 @@ figcaption{
 }
 
 //contact
+
 .section.contact{
   min-height:530px;
 }
@@ -397,6 +399,12 @@ figcaption{
   height: 455px;
   background: url("../img/form.jpg") center center no-repeat;
   overflow:hidden;
+  p{
+    color: white;
+    font-size: 20px;
+    margin-top: 202px;
+    margin-left: 16px
+  }
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi){
     background: url("../img/form-retina.jpg") center center no-repeat;
     @include background-size(contain);
@@ -405,13 +413,15 @@ figcaption{
 @media screen and (max-width:800px){
   .contact-left-inner{
     text-align: center;
-    margin:0 auto;
+    margin-left: 23px;
+    margin-top: 26px;
+
   }
   .contact-left-container,.contact-right-container{
     float:none;
   }
   .contact-inner{
-    width: auto;
+    width: 322px;
   }
 }
   //form

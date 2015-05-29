@@ -1,0 +1,35 @@
+//========== Footer ============
+
+.footer{
+  color:#FFF;
+  height: 60px;
+  background:#000;
+  text-transform: uppercase;
+  text-align: center;
+}
+.footer-l1{
+  display:inline-block;
+}
+.footer-name{
+  font-size: 22px;
+}
+.footer-list{
+  margin:0;
+  display:inline;
+}
+.footer-item{
+  display: inline-block;
+  margin-left: 16px;
+}
+.footer-link{
+  color:lightgrey;
+
+  &:hover{
+    color:#FFF;
+    text-decoration:none;
+  }
+}
+.contact-me-link{
+  font-size: 12px;
+  color:lightgrey;
+}

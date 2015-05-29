@@ -1,0 +1,45 @@
+//====================== Base ==============================
+
+@font-face{
+    font-family : "Gobold";
+    src : url('../fonts/gobold/Gobold Uplow.ttf');
+    font-weight: bold;
+}
+@font-face{
+    font-family : "Gobold";
+    src : url('../fonts/gobold/Gobold Light.ttf');
+    font-weight: normal;
+}
+
+*{
+  font-family: 'Economica', sans-serif;
+  font-weight: normal;
+}
+
+h1,h2,h3,h4,h5,.filter-item,a{
+  font-family: "Gobold";
+  text-transform: uppercase;
+}
+
+
+html,body{
+  height: 100%;
+  overflow-x:hidden;
+}
+
+ul{
+  padding:0;
+}
+
+h2{
+  font-size: 26px;
+  width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.section-header{
+  padding-top: 30px;
+}

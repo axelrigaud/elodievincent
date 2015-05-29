@@ -1,0 +1,68 @@
+//======================= Hero =======================
+
+.hero{
+
+  overflow:hidden;
+  height: 100%;
+  position:relative;
+
+  background:url('../img/fullhero.jpg') center center no-repeat;
+  @include background-size(cover);
+  @media screen and (min-width:3911px) {
+    @include background-size(cover);
+  }
+}
+.baseline{
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:7%;
+  text-align: center;
+}
+.baseline__l1{
+    color:#FFF;
+    letter-spacing: 1px;
+    font-size: 24px;
+    text-transform: uppercase;
+
+}
+.baseline__l2{
+  color:#FFF;
+  letter-spacing: 1px;
+  font-size: 16px;
+  text-transform: uppercase;
+  margin-top: 0px;
+  p{
+    margin: 0;
+  }
+}
+.social-item{
+  display:inline-block;
+  margin-right: 5px;
+  height: 30px;
+  width: 30px;
+}
+.facebook{
+  background:url('../img/FB.svg');
+}
+.behance{
+  background:url('../img/Be.svg');
+}
+.instagram{
+  background:url('../img/Insta.svg');
+}
+@media screen and (min-height:500px) {
+  .baseline__l1{
+    font-size: 38px;
+  }
+  .baseline__l2{
+    font-size: 24px;
+  }
+  .social-item{
+    width: 35px;
+    height: 35px;
+  }
+}
+.hero .fa{
+  color:#FFF;
+}

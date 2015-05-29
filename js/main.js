@@ -3,7 +3,7 @@ jQuery(document).ready(function() {
   // ===== Pre Loader ===== //
   $(window).on("load", function(){
     $('.loader-wrapper').fadeOut(300);
-    $('.splash').fadeIn(300);
+    $('.hero').fadeIn(300);
   });
   
 

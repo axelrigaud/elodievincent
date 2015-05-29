@@ -1,0 +1,99 @@
+//======================= About ==========================
+
+.section.about{
+  min-height: 430px;
+  position: relative;
+}
+.professional-experiences-container,.education-container{
+  width: 392px;
+  text-align: center;
+  width: 38%;
+}
+.professional-experiences-container{
+  float:left;
+}
+.education-container{
+  float:right;
+}
+.hello-container{
+  height: 340px;
+  background: url("../img/rond.jpg") center center no-repeat;
+  color:#FFF;
+  text-align: center;
+  margin-top: 10px;
+  left:0;
+  right:0;
+  position:absolute;
+  overflow:hidden;
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    background: url("../img/rond-retina.jpg") center center no-repeat;
+    background-size: contain;
+  }
+}
+.hello-inner{
+  margin-top: 62px;
+}
+@media screen and (max-width:1050px) {
+  .professional-experiences-container,.education-container{
+  float:none;
+  width: 100%;
+  }
+  .hello-container{
+    position:static;
+  }
+}
+.professional-experiences-header,.education-header{
+  font-size: 17px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+.professional-experiences-separator,.education-separator{
+  img{
+    height: 100%;
+  }
+  margin-bottom: 8px;
+}
+.professional-experiences-separator img {
+  width: 342px;
+}
+.professional-experiences-separator{
+  height:12px;
+}
+.education-separator{
+  height:15px
+}
+.professional-experiences-list,.education-list{
+  list-style-type: none
+}
+.professional-experiences-item,.education-item{
+  margin-bottom: 10px;
+}
+.professional-experiences-l1,.education-l1{
+  margin-bottom: -5px;
+}
+.when{
+  font-style: italic;
+}
+.where{
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 14px;
+  font-family: Gobold;
+  margin-left: 5px;
+}
+.what{
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.hello-l1,.hello-l2,.hello-l3,.hello-l4,.hello-l5,.hello-l6,.hello-l7,.hello-l8{
+  color:#FFF;
+  margin-bottom: 0px;
+}
+.hello-l1{
+  font-size: 29px;
+}
+.hello-l2,.hello-l3,.hello-l4,.hello-l5,.hello-l6,.hello-l7,.hello-l8{
+  font-size:18px;
+  margin-bottom: -4px;
+}

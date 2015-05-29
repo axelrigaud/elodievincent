@@ -6,6 +6,7 @@ jQuery(document).ready(function() {
     $('.splash').fadeIn(300);
   });
   
+
   //Behance stuff
   var apiKey  = 'zdinRP5GJarvCOa3PWiQxYb94dPyc9Xx';
   var userID  = 'hellovincent';

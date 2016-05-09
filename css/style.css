@@ -295,15 +295,10 @@ figcaption h3 {
 /* line 100, ../scss/_portfolio.scss */
 .project-description {
   font-size: 18px;
-  margin: 20px;
+  margin: 20px 20px 10px;
 }
 
-/* line 104, ../scss/_portfolio.scss */
-.owl-item div {
-  text-align: center;
-}
-
-/* line 108, ../scss/_portfolio.scss */
+/* line 105, ../scss/_portfolio.scss */
 #modal-container {
   position: fixed;
   font-family: Arial, Helvetica, sans-serif;
@@ -320,46 +315,33 @@ figcaption h3 {
   pointer-events: none;
 }
 
-/* line 123, ../scss/_portfolio.scss */
+/* line 120, ../scss/_portfolio.scss */
 #modal-inner {
   height: 100%;
   text-align: center;
 }
 
-/* line 127, ../scss/_portfolio.scss */
+/* line 124, ../scss/_portfolio.scss */
 .project-description, .project-title {
   color: #FFF;
 }
 
+/* line 127, ../scss/_portfolio.scss */
+.owl-nav {
+  color: white;
+  margin-bottom: 10px;
+}
 /* line 130, ../scss/_portfolio.scss */
-.modal-image-container {
-  height: 400px;
-  width: auto;
+.owl-nav div {
+  display: inline-block;
+  margin-right: 10px;
 }
-@media screen and (min-width: 1400px) {
-  /* line 130, ../scss/_portfolio.scss */
-  .modal-image-container {
-    height: 600px;
-  }
-}
-@media screen and (min-width: 1600px) {
-  /* line 130, ../scss/_portfolio.scss */
-  .modal-image-container {
-    height: 800px;
-  }
-}
-@media screen and (min-width: 1800px) {
-  /* line 130, ../scss/_portfolio.scss */
-  .modal-image-container {
-    height: 1000px;
-  }
-}
-/* line 142, ../scss/_portfolio.scss */
-.modal-image-container img {
-  height: 100%;
+/* line 133, ../scss/_portfolio.scss */
+.owl-nav div:hover {
+  cursor: pointer;
 }
 
-/* line 146, ../scss/_portfolio.scss */
+/* line 138, ../scss/_portfolio.scss */
 #close {
   cursor: pointer;
   position: absolute;
@@ -826,4 +808,213 @@ textarea {
 .contact-me-link {
   font-size: 12px;
   color: lightgrey;
+}
+
+/*
+ *  Owl Carousel - Core
+ */
+/* line 4, ../bower_components/owl.carousel/src/scss/_core.scss */
+.owl-carousel {
+  display: none;
+  width: 100%;
+  -webkit-tap-highlight-color: transparent;
+  /* position relative and z-index fix webkit rendering fonts issue */
+  position: relative;
+  z-index: 1;
+}
+/* line 12, ../bower_components/owl.carousel/src/scss/_core.scss */
+.owl-carousel .owl-stage {
+  position: relative;
+  -ms-touch-action: pan-Y;
+}
+/* line 17, ../bower_components/owl.carousel/src/scss/_core.scss */
+.owl-carousel .owl-stage:after {
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
+}
+/* line 26, ../bower_components/owl.carousel/src/scss/_core.scss */
+.owl-carousel .owl-stage-outer {
+  position: relative;
+  overflow: hidden;
+  /* fix for flashing background */
+  -webkit-transform: translate3d(0px, 0px, 0px);
+}
+/* line 33, ../bower_components/owl.carousel/src/scss/_core.scss */
+.owl-carousel .owl-item {
+  position: relative;
+  min-height: 1px;
+  float: left;
+  -webkit-backface-visibility: hidden;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+/* line 41, ../bower_components/owl.carousel/src/scss/_core.scss */
+.owl-carousel .owl-item img {
+  display: block;
+  width: 100%;
+  -webkit-transform-style: preserve-3d;
+}
+/* line 47, ../bower_components/owl.carousel/src/scss/_core.scss */
+.owl-carousel .owl-nav.disabled,
+.owl-carousel .owl-dots.disabled {
+  display: none;
+}
+/* line 52, ../bower_components/owl.carousel/src/scss/_core.scss */
+.owl-carousel .owl-nav .owl-prev,
+.owl-carousel .owl-nav .owl-next,
+.owl-carousel .owl-dot {
+  cursor: pointer;
+  cursor: hand;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* line 64, ../bower_components/owl.carousel/src/scss/_core.scss */
+.owl-carousel.owl-loaded {
+  display: block;
+}
+/* line 68, ../bower_components/owl.carousel/src/scss/_core.scss */
+.owl-carousel.owl-loading {
+  opacity: 0;
+  display: block;
+}
+/* line 73, ../bower_components/owl.carousel/src/scss/_core.scss */
+.owl-carousel.owl-hidden {
+  opacity: 0;
+}
+/* line 77, ../bower_components/owl.carousel/src/scss/_core.scss */
+.owl-carousel.owl-refresh .owl-item {
+  display: none;
+}
+/* line 81, ../bower_components/owl.carousel/src/scss/_core.scss */
+.owl-carousel.owl-drag .owl-item {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+/* line 88, ../bower_components/owl.carousel/src/scss/_core.scss */
+.owl-carousel.owl-grab {
+  cursor: move;
+  cursor: grab;
+}
+/* line 93, ../bower_components/owl.carousel/src/scss/_core.scss */
+.owl-carousel.owl-rtl {
+  direction: rtl;
+}
+/* line 97, ../bower_components/owl.carousel/src/scss/_core.scss */
+.owl-carousel.owl-rtl .owl-item {
+  float: right;
+}
+
+/* No Js */
+/* line 103, ../bower_components/owl.carousel/src/scss/_core.scss */
+.no-js .owl-carousel {
+  display: block;
+}
+
+/*
+ *  Owl Carousel - Animate Plugin
+ */
+/* line 5, ../bower_components/owl.carousel/src/scss/_animate.scss */
+.owl-carousel .animated {
+  animation-duration: 1000ms;
+  animation-fill-mode: both;
+}
+/* line 9, ../bower_components/owl.carousel/src/scss/_animate.scss */
+.owl-carousel .owl-animated-in {
+  z-index: 0;
+}
+/* line 12, ../bower_components/owl.carousel/src/scss/_animate.scss */
+.owl-carousel .owl-animated-out {
+  z-index: 1;
+}
+/* line 15, ../bower_components/owl.carousel/src/scss/_animate.scss */
+.owl-carousel .fadeOut {
+  animation-name: fadeOut;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+/*
+ * 	Owl Carousel - Auto Height Plugin
+ */
+/* line 5, ../bower_components/owl.carousel/src/scss/_autoheight.scss */
+.owl-height {
+  transition: height 500ms ease-in-out;
+}
+
+/*
+ * 	Owl Carousel - Lazy Load Plugin
+ */
+/* line 7, ../bower_components/owl.carousel/src/scss/_lazyload.scss */
+.owl-carousel .owl-item .owl-lazy {
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+/* line 12, ../bower_components/owl.carousel/src/scss/_lazyload.scss */
+.owl-carousel .owl-item img.owl-lazy {
+  transform-style: preserve-3d;
+}
+
+/*
+ * 	Owl Carousel - Video Plugin
+ */
+/* line 6, ../bower_components/owl.carousel/src/scss/_video.scss */
+.owl-carousel .owl-video-wrapper {
+  position: relative;
+  height: 100%;
+  background: #000;
+}
+/* line 12, ../bower_components/owl.carousel/src/scss/_video.scss */
+.owl-carousel .owl-video-play-icon {
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  left: 50%;
+  top: 50%;
+  margin-left: -40px;
+  margin-top: -40px;
+  background: url("owl.video.play.png") no-repeat;
+  cursor: pointer;
+  z-index: 1;
+  -webkit-backface-visibility: hidden;
+  transition: transform 100ms ease;
+}
+/* line 27, ../bower_components/owl.carousel/src/scss/_video.scss */
+.owl-carousel .owl-video-play-icon:hover {
+  transform: scale(1.3, 1.3);
+}
+/* line 31, ../bower_components/owl.carousel/src/scss/_video.scss */
+.owl-carousel .owl-video-playing .owl-video-tn,
+.owl-carousel .owl-video-playing .owl-video-play-icon {
+  display: none;
+}
+/* line 36, ../bower_components/owl.carousel/src/scss/_video.scss */
+.owl-carousel .owl-video-tn {
+  opacity: 0;
+  height: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  transition: opacity 400ms ease;
+}
+/* line 45, ../bower_components/owl.carousel/src/scss/_video.scss */
+.owl-carousel .owl-video-frame {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
 }

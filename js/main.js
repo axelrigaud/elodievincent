@@ -28,7 +28,6 @@ jQuery(document).ready(function() {
       projectsData[i].fields = [];
       
       if (rawProjectsData.projects[i].fields){
-        console.log('test');
         for (var j=0;j<rawProjectsData.projects[i].fields.length;j++){
           
           switch (rawProjectsData.projects[i].fields[j]){
@@ -88,7 +87,6 @@ jQuery(document).ready(function() {
         
       }
     }
-    console.log(projectData.modules);
     return projectData;
   }
 
@@ -104,10 +102,58 @@ jQuery(document).ready(function() {
       "opacity":1,
       "pointer-events": "auto"
     });
+    function setOwlStageHeight(event) {
+      var maxHeight = 0;
+      $('.owl-item.active').each(function () { // LOOP THROUGH ACTIVE ITEMS
+          var thisHeight = parseInt( $(this).height() );
+          maxHeight=(maxHeight>=thisHeight?maxHeight:thisHeight);
+      });
+      $('.owl-carousel').css('height', maxHeight );
+      $('.owl-stage-outer').css('height', maxHeight ); // CORRECT DRAG-AREA SO BUTTONS ARE CLICKABLE
+      $('.owl-stage').css('height', maxHeight );
+    };
+    var showTheNav, navContainer;
+
+    console.log(window.navContainer);
+
+    (function showNav() {
+      $owlSlides = $(".owl-carousel").children('img');
+      
+      if ($owlSlides.length > 1) {
+        navContainer = '.owl-nav';
+      }
+      else {
+        navContainer = false;
+      }
+    })();
+
     //set carrousel
-    $(".owl-carousel").owlCarousel({
-      singleItem:true
+    $('#modal-container').imagesLoaded(function(){
+      $('.loader-wrapper').css({'display':'none'});
+      $(".owl-carousel").owlCarousel({
+        navContainer: navContainer,
+        margin: 10,
+        nav: showTheNav,
+        center:true,
+        autoHeight: true,
+        onInitialized: setOwlStageHeight,
+        onResized: setOwlStageHeight,
+        onTranslated: setOwlStageHeight,
+        responsive: {
+          0 : {
+            items: 1
+          },
+          600: {
+            items: 2
+          },
+          900: {
+            items: 3
+          }
+        }
+      });
     });
+
+    
     $("#close").on('click',function(){
       $('#modal-container').css({
       "opacity":0,
@@ -193,7 +239,6 @@ jQuery(document).ready(function() {
   $('input').on('blur',function(){
 
     if ($(this).val() === ''){
-      console.log('champ vide');
       $(this).parent().removeClass('input--filled');
     }
   })

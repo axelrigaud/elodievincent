@@ -313,35 +313,36 @@ figcaption h3 {
   -moz-transition: opacity 400ms ease-in;
   transition: opacity 400ms ease-in;
   pointer-events: none;
+  overflow-y: scroll;
 }
 
-/* line 120, ../scss/_portfolio.scss */
+/* line 121, ../scss/_portfolio.scss */
 #modal-inner {
   height: 100%;
   text-align: center;
 }
 
-/* line 124, ../scss/_portfolio.scss */
+/* line 125, ../scss/_portfolio.scss */
 .project-description, .project-title {
   color: #FFF;
 }
 
-/* line 127, ../scss/_portfolio.scss */
+/* line 128, ../scss/_portfolio.scss */
 .owl-nav {
   color: white;
   margin-bottom: 10px;
 }
-/* line 130, ../scss/_portfolio.scss */
+/* line 131, ../scss/_portfolio.scss */
 .owl-nav div {
   display: inline-block;
   margin-right: 10px;
 }
-/* line 133, ../scss/_portfolio.scss */
+/* line 134, ../scss/_portfolio.scss */
 .owl-nav div:hover {
   cursor: pointer;
 }
 
-/* line 138, ../scss/_portfolio.scss */
+/* line 139, ../scss/_portfolio.scss */
 #close {
   cursor: pointer;
   position: absolute;

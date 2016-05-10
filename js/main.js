@@ -1,13 +1,20 @@
 jQuery(document).ready(function() {
 
-  // ===== Pre Loader ===== //
+  /******* Loader *******/
+
   $(window).on("load", function(){
     $('.loader-wrapper').fadeOut(300);
     $('.hero').fadeIn(300);
+    $('.wp1').waypoint(function() {
+      $('.wp1').addClass('animated fadeInUp');
+      }, {
+      offset: '80%'
+    });
   });
   
 
-  //Behance stuff
+  /***** Behance stuff *******/
+
   var apiKey  = 'zdinRP5GJarvCOa3PWiQxYb94dPyc9Xx';
   var userID  = 'hellovincent';
 
@@ -17,9 +24,10 @@ jQuery(document).ready(function() {
     return 'http://www.behance.net/v2/projects/'+id+'?callback=?&api_key='+ apiKey;
   };
 
+  /***** Portfolio *******/
+
   function preparePortfolio(rawProjectsData){
     var projectsData = [];
-
     for (var i=0;i<rawProjectsData.projects.length;i++){
       projectsData[i] = {};
       projectsData[i].name = rawProjectsData.projects[i].name;
@@ -91,6 +99,7 @@ jQuery(document).ready(function() {
   }
 
   function setModalTemplate(id){
+    $('.loader-wrapper').fadeIn(300);
     var rawProjectData = JSON.parse(sessionStorage.getItem('behanceProject'+id)),
       rawTemplate = $('#modal-template').html(),
       template = Handlebars.compile(rawTemplate),
@@ -102,6 +111,7 @@ jQuery(document).ready(function() {
       "opacity":1,
       "pointer-events": "auto"
     });
+
     function setOwlStageHeight(event) {
       var maxHeight = 0;
       $('.owl-item.active').each(function () { // LOOP THROUGH ACTIVE ITEMS
@@ -112,13 +122,11 @@ jQuery(document).ready(function() {
       $('.owl-stage-outer').css('height', maxHeight ); // CORRECT DRAG-AREA SO BUTTONS ARE CLICKABLE
       $('.owl-stage').css('height', maxHeight );
     };
-    var showTheNav, navContainer;
 
-    console.log(window.navContainer);
+    var showTheNav, navContainer;
 
     (function showNav() {
       $owlSlides = $(".owl-carousel").children('img');
-      
       if ($owlSlides.length > 1) {
         navContainer = '.owl-nav';
       }
@@ -129,7 +137,7 @@ jQuery(document).ready(function() {
 
     //set carrousel
     $('#modal-container').imagesLoaded(function(){
-      $('.loader-wrapper').css({'display':'none'});
+      $('.loader-wrapper').fadeOut(300);
       $(".owl-carousel").owlCarousel({
         navContainer: navContainer,
         margin: 10,
@@ -174,6 +182,7 @@ jQuery(document).ready(function() {
       })
     }
   }
+
   var setPortfolio = function(){
   if(sessionStorage.getItem('behanceProjects')) {
       setPortfolioTemplate();
@@ -184,14 +193,14 @@ jQuery(document).ready(function() {
           setPortfolioTemplate();
       });
   }}
+
   function createLinks(){
-    $('.portfolio-item a').on('click',function(e){
+    $('.portfolio-item a').on('click', function(e){
       e.preventDefault();
       showProject($(this).data("project_id"));
     });
   }
   setPortfolio();
-
 
   $(window).on("load", function(){
   setTimeout(function(){  var $container = $('#projects-grid');
@@ -242,4 +251,7 @@ jQuery(document).ready(function() {
       $(this).parent().removeClass('input--filled');
     }
   })
+  /***************** Waypoints ******************/
+
+  
 });

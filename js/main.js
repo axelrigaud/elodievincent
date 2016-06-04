@@ -244,14 +244,13 @@ jQuery(document).ready(function() {
   //FORMS
   $('input').on('focus',function(){
     $(this).parent().addClass('input--filled');
-  })
+  });
   $('input').on('blur',function(){
 
     if ($(this).val() === ''){
       $(this).parent().removeClass('input--filled');
     }
-  })
-  /***************** Waypoints ******************/
+  });
 
   
 });

@@ -11,7 +11,7 @@ jQuery(document).ready(function() {
       offset: '80%'
     });
   });
-  
+
 
   /***** Behance stuff *******/
 
@@ -34,10 +34,10 @@ jQuery(document).ready(function() {
       projectsData[i].id = rawProjectsData.projects[i].id;
       projectsData[i].cover = rawProjectsData.projects[i].covers["404"];
       projectsData[i].fields = [];
-      
+
       if (rawProjectsData.projects[i].fields){
         for (var j=0;j<rawProjectsData.projects[i].fields.length;j++){
-          
+
           switch (rawProjectsData.projects[i].fields[j]){
             case 'Editorial Design':
               projectsData[i].fields[j] = 'print';
@@ -59,7 +59,7 @@ jQuery(document).ready(function() {
               break;
           }
         }
-        
+
       }
     }
 
@@ -92,7 +92,7 @@ jQuery(document).ready(function() {
       else{
         projectData.modules[i].isEmbed = true;
         projectData.modules[i].embed = rawProjectData.project.modules[i].embed
-        
+
       }
     }
     return projectData;
@@ -121,6 +121,12 @@ jQuery(document).ready(function() {
       $('.owl-carousel').css('height', maxHeight );
       $('.owl-stage-outer').css('height', maxHeight ); // CORRECT DRAG-AREA SO BUTTONS ARE CLICKABLE
       $('.owl-stage').css('height', maxHeight );
+
+      // forces iframe width to prevent overlapping with other non iframe elements
+      if ($('iframe').length > 0) {
+        var newWidth = $('.owl-item').width();
+        $('iframe').width(newWidth);
+      }
     };
 
     var showTheNav, navContainer;
@@ -161,7 +167,7 @@ jQuery(document).ready(function() {
       });
     });
 
-    
+
     $("#close").on('click',function(){
       $('#modal-container').css({
       "opacity":0,
@@ -252,5 +258,5 @@ jQuery(document).ready(function() {
     }
   });
 
-  
+
 });

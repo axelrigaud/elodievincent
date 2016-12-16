@@ -15,7 +15,6 @@ jQuery(document).ready(function() {
 
   /***** Behance stuff *******/
 
-  var apiKey  = 'zdinRP5GJarvCOa3PWiQxYb94dPyc9Xx';
   var userID  = 'hellovincent';
 
   var behanceProjectsAPI = 'http://www.behance.net/v2/users/'+ userID +'/projects?callback=?&api_key='+ apiKey+'&per_page=25';

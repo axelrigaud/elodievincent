@@ -12,6 +12,134 @@ jQuery(document).ready(function() {
     });
   });
 
+  var Project = (function () {
+    //duplicate with portfolio module !!
+    var _settings = {
+      apiKey  : 'zdinRP5GJarvCOa3PWiQxYb94dPyc9Xx'
+    };
+
+    var _behanceProjectAPI = function (id) {
+      return 'http://www.behance.net/v2/projects/'+id+'?callback=?&api_key='+ _settings.apiKey;
+    };
+
+    var _prepareProject = function (rawProjectData) {
+      var projectData = {};
+      projectData.modules = [];
+      projectData.name = rawProjectData.project.name;
+      projectData.description = rawProjectData.project.description;
+      for(i=0;i<rawProjectData.project.modules.length;i++){
+        projectData.modules[i] = {}; // init module so we don't get undefined
+        if (rawProjectData.project.modules[i].type === "image"){
+          projectData.modules[i].isImage = true;
+          projectData.modules[i].src = rawProjectData.project.modules[i].sizes.original;
+
+        }
+        else {
+          projectData.modules[i].isEmbed = true;
+          projectData.modules[i].embed = rawProjectData.project.modules[i].embed
+
+        }
+      }
+      return projectData;
+    };
+
+    var _setModalTemplate = function (id) {
+          $('.loader-wrapper').fadeIn(300);
+          var rawProjectData = JSON.parse(sessionStorage.getItem('behanceProject'+id)),
+            rawTemplate = $('#modal-template').html(),
+            template = Handlebars.compile(rawTemplate),
+            projectData = _prepareProject(rawProjectData),
+            result = template(projectData);
+          //append view
+          $('#modal-container').html(result);
+          $('#modal-container').css({
+            "opacity":1,
+            "pointer-events": "auto"
+          });
+
+          function setOwlStageHeight(event) {
+            var maxHeight = 0;
+            $('.owl-item.active').each(function () { // LOOP THROUGH ACTIVE ITEMS
+                var thisHeight = parseInt( $(this).height() );
+                maxHeight=(maxHeight>=thisHeight?maxHeight:thisHeight);
+            });
+            $('.owl-carousel').css('height', maxHeight );
+            $('.owl-stage-outer').css('height', maxHeight ); // CORRECT DRAG-AREA SO BUTTONS ARE CLICKABLE
+            $('.owl-stage').css('height', maxHeight );
+
+            // forces iframe width to prevent overlapping with other non iframe elements
+            if ($('iframe').length > 0) {
+              var newWidth = $('.owl-item').width();
+              $('iframe').width(newWidth);
+            }
+          };
+
+          var showTheNav, navContainer;
+
+          (function showNav() {
+            $owlSlides = $(".owl-carousel").children('img');
+            if ($owlSlides.length > 1) {
+              navContainer = '.owl-nav';
+            }
+            else {
+              navContainer = false;
+            }
+          })();
+
+          //set carrousel
+          $('#modal-container').imagesLoaded(function(){
+            $('.loader-wrapper').fadeOut(300);
+            $('.owl-carousel').owlCarousel({
+              navContainer: navContainer,
+              margin: 10,
+              nav: showTheNav,
+              center:true,
+              autoHeight: true,
+              onInitialized: setOwlStageHeight,
+              onResized: setOwlStageHeight,
+              onTranslated: setOwlStageHeight,
+              responsive: {
+                0 : {
+                  items: 1
+                },
+                600: {
+                  items: 2
+                },
+                900: {
+                  items: 3
+                }
+              }
+            });
+          });
+
+
+          $("#close").on('click',function(){
+            $('#modal-container').css({
+            "opacity":0,
+            "pointer-events":"none"
+            });
+          });
+        };
+
+    var showProject = function (id) {
+      if (sessionStorage.getItem('behanceProject'+id)){
+        _setModalTemplate(id);
+      }
+      else {
+        var that = this;
+        $.getJSON(_behanceProjectAPI(id),function(project){
+          var data = JSON.stringify(project);
+          sessionStorage.setItem('behanceProject'+id,data);
+          _setModalTemplate(id);
+        })
+      }
+    }
+
+    return {
+      showProject: showProject
+    }
+  })();
+
   var Portfolio = (function () {
 
     var _settings = {
@@ -21,10 +149,6 @@ jQuery(document).ready(function() {
 
     var _behanceProjectsAPI = function () {
       return 'http://www.behance.net/v2/users/'+ _settings.userID +'/projects?callback=?&api_key='+ _settings.apiKey+'&per_page=25';
-    };
-
-    var _behanceProjectAPI = function (id) {
-      return 'http://www.behance.net/v2/projects/'+id+'?callback=?&api_key='+ _settings.apiKey;
     };
 
     var _preparePortfolio = function (rawProjectsData) {
@@ -77,124 +201,11 @@ jQuery(document).ready(function() {
       return projectsData;
     };
 
-    var _prepareProject = function (rawProjectData) {
-      var projectData = {};
-      projectData.modules = [];
-      projectData.name = rawProjectData.project.name;
-      projectData.description = rawProjectData.project.description;
-      for(i=0;i<rawProjectData.project.modules.length;i++){
-        projectData.modules[i] = {}; // init module so we don't get undefined
-        if (rawProjectData.project.modules[i].type === "image"){
-          projectData.modules[i].isImage = true;
-          projectData.modules[i].src = rawProjectData.project.modules[i].sizes.original;
-
-        }
-        else {
-          projectData.modules[i].isEmbed = true;
-          projectData.modules[i].embed = rawProjectData.project.modules[i].embed
-
-        }
-      }
-      return projectData;
-    };
-
-    var _setModalTemplate = function (id) {
-      $('.loader-wrapper').fadeIn(300);
-      var rawProjectData = JSON.parse(sessionStorage.getItem('behanceProject'+id)),
-        rawTemplate = $('#modal-template').html(),
-        template = Handlebars.compile(rawTemplate),
-        projectData = _prepareProject(rawProjectData),
-        result = template(projectData);
-      //append view
-      $('#modal-container').html(result);
-      $('#modal-container').css({
-        "opacity":1,
-        "pointer-events": "auto"
-      });
-
-      function setOwlStageHeight(event) {
-        var maxHeight = 0;
-        $('.owl-item.active').each(function () { // LOOP THROUGH ACTIVE ITEMS
-            var thisHeight = parseInt( $(this).height() );
-            maxHeight=(maxHeight>=thisHeight?maxHeight:thisHeight);
-        });
-        $('.owl-carousel').css('height', maxHeight );
-        $('.owl-stage-outer').css('height', maxHeight ); // CORRECT DRAG-AREA SO BUTTONS ARE CLICKABLE
-        $('.owl-stage').css('height', maxHeight );
-
-        // forces iframe width to prevent overlapping with other non iframe elements
-        if ($('iframe').length > 0) {
-          var newWidth = $('.owl-item').width();
-          $('iframe').width(newWidth);
-        }
-      };
-
-      var showTheNav, navContainer;
-
-      (function showNav() {
-        $owlSlides = $(".owl-carousel").children('img');
-        if ($owlSlides.length > 1) {
-          navContainer = '.owl-nav';
-        }
-        else {
-          navContainer = false;
-        }
-      })();
-
-      //set carrousel
-      $('#modal-container').imagesLoaded(function(){
-        $('.loader-wrapper').fadeOut(300);
-        $('.owl-carousel').owlCarousel({
-          navContainer: navContainer,
-          margin: 10,
-          nav: showTheNav,
-          center:true,
-          autoHeight: true,
-          onInitialized: setOwlStageHeight,
-          onResized: setOwlStageHeight,
-          onTranslated: setOwlStageHeight,
-          responsive: {
-            0 : {
-              items: 1
-            },
-            600: {
-              items: 2
-            },
-            900: {
-              items: 3
-            }
-          }
-        });
-      });
-
-
-      $("#close").on('click',function(){
-        $('#modal-container').css({
-        "opacity":0,
-        "pointer-events":"none"
-        });
-      });
-    };
-
-    var _showProject = function (id) {
-      if(sessionStorage.getItem('behanceProject'+id)){
-        _setModalTemplate(id);
-      }
-      else {
-        var that = this;
-        $.getJSON(_behanceProjectAPI(id),function(project){
-          var data = JSON.stringify(project);
-          sessionStorage.setItem('behanceProject'+id,data);
-          _setModalTemplate(id);
-        })
-      }
-    };
-
     var _createLinks = function () {
       var that = this;
       $('.portfolio-item a').on('click', function(e){
         e.preventDefault();
-        _showProject($(this).data("project_id"));
+        Project.showProject($(this).data("project_id"));
       });
     };
 

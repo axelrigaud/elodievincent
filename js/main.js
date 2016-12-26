@@ -136,7 +136,6 @@ jQuery(document).ready(function() {
         _setModalTemplate(id);
       }
       else {
-        var that = this;
         $.getJSON(_behanceProjectAPI(id),function(project){
           var data = JSON.stringify(project);
           sessionStorage.setItem('behanceProject'+id,data);
@@ -212,7 +211,6 @@ jQuery(document).ready(function() {
     };
 
     var _createLinks = function () {
-      var that = this;
       $('.portfolio-item a').on('click', function(e){
         e.preventDefault();
         Project.showProject($(this).data("project_id"));
@@ -283,11 +281,10 @@ jQuery(document).ready(function() {
 
         } else {
 
-            var that = this;
             $.getJSON(_behanceProjectsAPI(), function (projects) {
                 var data = JSON.stringify(projects);
                 sessionStorage.setItem('behanceProjects', data);
-                that.setPortfolioTemplate();
+                _setPortfolioTemplate();
             });
 
         }

@@ -301,7 +301,7 @@ jQuery(document).ready(function() {
 
     function _clientSideValidation () {
       var validated = true;
-      $(".contact-form-container input, .contact-form-container textarea").each(function(){
+      $('.contact-form-container input, .contact-form-container textarea').each(function(){
           $(this).css('border-color','');
           if(!$.trim($(this).val())){ //if this field is empty
               $(this).css('border-color','red'); //change border color to red
@@ -320,7 +320,7 @@ jQuery(document).ready(function() {
     return {
       init : function () {
 
-        $(".submit-btn").click(function() {
+        $('.submit-btn').click(function() {
 
             if (_clientSideValidation()) //everything looks good! proceed...
             {
@@ -349,7 +349,7 @@ jQuery(document).ready(function() {
 
         //reset previously set border colors and hide all message on .keyup()
         $("#contact_form  input[required=true], #contact_form textarea[required=true]").keyup(function() {
-            $(this).css('border-color','');
+            $(this).css('border-color', '');
             $("#result").slideUp();
         });
 
@@ -368,6 +368,5 @@ jQuery(document).ready(function() {
 
   Portfolio.init();
   Form.init();
-
 
 });

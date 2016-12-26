@@ -184,7 +184,7 @@ jQuery(document).ready(function() {
         if(sessionStorage.getItem('behanceProject'+id)){
           this.setModalTemplate(id);
         }
-        else{
+        else {
           var that = this;
           $.getJSON(this.behanceProjectAPI(id),function(project){
             var data = JSON.stringify(project);
@@ -195,7 +195,7 @@ jQuery(document).ready(function() {
       },
 
       createLinks: function () {
-        that = this;
+        var that = this;
         $('.portfolio-item a').on('click', function(e){
           e.preventDefault();
           that.showProject($(this).data("project_id"));
@@ -280,20 +280,84 @@ jQuery(document).ready(function() {
 
   })();
 
+  var Form = (function () {
+    return {
+      clientSideValidation: function () {
+        var validated = true;
+        $(".contact-form-container input, .contact-form-container textarea").each(function(){
+            $(this).css('border-color','');
+            if(!$.trim($(this).val())){ //if this field is empty
+                $(this).css('border-color','red'); //change border color to red
+                validated = false; //set do not proceed flag
+            }
+            //check invalid email
+            var email_reg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            if($(this).attr("name")=="email" && !email_reg.test($.trim($(this).val()))){
+                $(this).css('border-color','red'); //change border color to red
+                validated = false; //set do not proceed flag
+            }
+        });
+        return validated;
+      },
+
+      init: function () {
+        var that = this;
+        $(".submit-btn").click(function() {
+          debugger;
+
+            if (that.clientSideValidation()) //everything looks good! proceed...
+            {
+                console.log('valid');
+                //get input field values data to be sent to server
+                post_data = {
+                    'user_name'     : $('input[name=name]').val(),
+                    'user_email'    : $('input[name=email]').val(),
+                    'subject'       : $('input[name=sujet]').val(),
+                    'msg'           : $('textarea[name=textarea]').val()
+                };
+
+                //Ajax post data to server
+                $.post('contact-me.php', post_data, function(response){
+                    if(response.type == 'error'){ //load json data from server and output message
+                        output = '<p class="error">'+response.text+'</p>';
+                    }else{
+                        output = '<p class="success">'+response.text+'</p>';
+                        //reset values in all input fields
+                        $(".contact-form-container  input, .contact-form-container textarea").val('');
+                        //$(".contact-form-container #contact_body").slideUp(); //hide form after success
+                    }
+                    $(".contact-form-container").html(output);
+                }, 'json');
+            }
+        });
+
+        //reset previously set border colors and hide all message on .keyup()
+        $("#contact_form  input[required=true], #contact_form textarea[required=true]").keyup(function() {
+            $(this).css('border-color','');
+            $("#result").slideUp();
+        });
+
+        $('input').on('focus',function(){
+          $(this).parent().addClass('input--filled');
+        });
+        $('input').on('blur',function(){
+
+          if ($(this).val() === ''){
+            $(this).parent().removeClass('input--filled');
+          }
+        });
+
+      }
+    };
+  })();
+
   Portfolio.init();
+  Form.init();
 
 
 
   //FORMS
-  $('input').on('focus',function(){
-    $(this).parent().addClass('input--filled');
-  });
-  $('input').on('blur',function(){
 
-    if ($(this).val() === ''){
-      $(this).parent().removeClass('input--filled');
-    }
-  });
 
 
 });

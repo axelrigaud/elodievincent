@@ -78,9 +78,7 @@ jQuery(document).ready(function() {
 
   var Project = (function () {
     //duplicate with portfolio module !!
-    var _settings = {
-      apiKey  : 'zdinRP5GJarvCOa3PWiQxYb94dPyc9Xx'
-    };
+
 
     var _behanceProjectAPI = function (id) {
       return 'http://www.behance.net/v2/projects/'+id+'?callback=?&api_key='+ _settings.apiKey;
@@ -151,10 +149,7 @@ jQuery(document).ready(function() {
 
   var Portfolio = (function () {
 
-    var _settings = {
-      apiKey  : 'zdinRP5GJarvCOa3PWiQxYb94dPyc9Xx',
-      userID  : 'hellovincent'
-    };
+
 
     var _behanceProjectsAPI = function () {
       return 'http://www.behance.net/v2/users/'+ _settings.userID +'/projects?callback=?&api_key='+ _settings.apiKey+'&per_page=25';

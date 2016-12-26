@@ -1,7 +1,5 @@
 jQuery(document).ready(function() {
 
-  /******* Loader *******/
-
   $(window).on("load", function(){
     $('.loader-wrapper').fadeOut(300);
     $('.hero').fadeIn(300);
@@ -11,6 +9,72 @@ jQuery(document).ready(function() {
       offset: '80%'
     });
   });
+
+  var Carousel = (function () {
+
+    var _navContainer;
+
+    var _setOwlStageHeight = function (event) {
+      var maxHeight = 0;
+      $('.owl-item.active').each(function () { // LOOP THROUGH ACTIVE ITEMS
+          var thisHeight = parseInt( $(this).height() );
+          maxHeight=(maxHeight>=thisHeight?maxHeight:thisHeight);
+      });
+      $('.owl-carousel').css('height', maxHeight );
+      $('.owl-stage-outer').css('height', maxHeight ); // CORRECT DRAG-AREA SO BUTTONS ARE CLICKABLE
+      $('.owl-stage').css('height', maxHeight );
+
+      // forces iframe width to prevent overlapping with other non iframe elements
+      if ($('iframe').length > 0) {
+        var newWidth = $('.owl-item').width();
+        $('iframe').width(newWidth);
+      }
+    };
+
+    var _showNav = function () {
+      $owlSlides = $(".owl-carousel").children('img');
+      if ($owlSlides.length > 1) {
+        _navContainer = '.owl-nav';
+      }
+      else {
+        _navContainer = false;
+      }
+    };
+
+    return {
+      init: function () {
+
+        _showNav();
+
+        //set carrousel
+        $('#modal-container').imagesLoaded(function(){
+          $('.loader-wrapper').fadeOut(300);
+          $('.owl-carousel').owlCarousel({
+            navContainer: _navContainer,
+            margin: 10,
+            nav: true,
+            center: true,
+            autoHeight: true,
+            onInitialized: _setOwlStageHeight,
+            onResized: _setOwlStageHeight,
+            onTranslated: _setOwlStageHeight,
+            responsive: {
+              0 : {
+                items: 1
+              },
+              600: {
+                items: 2
+              },
+              900: {
+                items: 3
+              }
+            }
+          });
+        });
+      }
+    }
+
+  })();
 
   var Project = (function () {
     //duplicate with portfolio module !!
@@ -57,68 +121,14 @@ jQuery(document).ready(function() {
             "pointer-events": "auto"
           });
 
-          function setOwlStageHeight(event) {
-            var maxHeight = 0;
-            $('.owl-item.active').each(function () { // LOOP THROUGH ACTIVE ITEMS
-                var thisHeight = parseInt( $(this).height() );
-                maxHeight=(maxHeight>=thisHeight?maxHeight:thisHeight);
-            });
-            $('.owl-carousel').css('height', maxHeight );
-            $('.owl-stage-outer').css('height', maxHeight ); // CORRECT DRAG-AREA SO BUTTONS ARE CLICKABLE
-            $('.owl-stage').css('height', maxHeight );
-
-            // forces iframe width to prevent overlapping with other non iframe elements
-            if ($('iframe').length > 0) {
-              var newWidth = $('.owl-item').width();
-              $('iframe').width(newWidth);
-            }
-          };
-
-          var showTheNav, navContainer;
-
-          (function showNav() {
-            $owlSlides = $(".owl-carousel").children('img');
-            if ($owlSlides.length > 1) {
-              navContainer = '.owl-nav';
-            }
-            else {
-              navContainer = false;
-            }
-          })();
-
-          //set carrousel
-          $('#modal-container').imagesLoaded(function(){
-            $('.loader-wrapper').fadeOut(300);
-            $('.owl-carousel').owlCarousel({
-              navContainer: navContainer,
-              margin: 10,
-              nav: showTheNav,
-              center:true,
-              autoHeight: true,
-              onInitialized: setOwlStageHeight,
-              onResized: setOwlStageHeight,
-              onTranslated: setOwlStageHeight,
-              responsive: {
-                0 : {
-                  items: 1
-                },
-                600: {
-                  items: 2
-                },
-                900: {
-                  items: 3
-                }
-              }
-            });
-          });
-
-
           $("#close").on('click',function(){
             $('#modal-container').css({
             "opacity":0,
             "pointer-events":"none"
             });
           });
+
+          Carousel.init();
         };
 
     var showProject = function (id) {

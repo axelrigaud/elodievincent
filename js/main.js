@@ -29,51 +29,52 @@ jQuery(document).ready(function() {
 
     preparePortfolio: function (rawProjectsData) {
       var projectsData = [];
-      for (var i=0;i<rawProjectsData.projects.length;i++){
+      for (var i=0; i<rawProjectsData.projects.length; i++){
         projectsData[i] = {};
         projectsData[i].name = rawProjectsData.projects[i].name;
         projectsData[i].id = rawProjectsData.projects[i].id;
         projectsData[i].cover = rawProjectsData.projects[i].covers["404"];
         projectsData[i].fields = [];
 
-        if (rawProjectsData.projects[i].fields){
+        if (rawProjectsData.projects[i].fields) {
           for (var j=0;j<rawProjectsData.projects[i].fields.length;j++){
 
             switch (rawProjectsData.projects[i].fields[j]){
+
               case 'Editorial Design':
+
                 projectsData[i].fields[j] = 'print';
                 break;
+
               case 'Web Design':
+
                 projectsData[i].fields[j] = 'web';
                 break;
+
               case 'Illustration':
+
                 projectsData[i].fields[j] = 'illustration';
                 break;
+
               case 'Typography':
+
                 projectsData[i].fields[j] = 'typographie';
                 break;
+
               case 'Animation':
+
                 projectsData[i].fields[j] = 'video';
                 break;
+
               case 'Fashion':
+
                 projectsData[i].fields[j] = 'mode';
                 break;
             }
           }
-
         }
       }
       return projectsData;
-    },
-
-    setPortfolioTemplate: function () {
-        var rawProjectsData = JSON.parse(sessionStorage.getItem('behanceProjects')),
-            rawTemplate = $('#portfolio-template').html(),
-            template    = Handlebars.compile(rawTemplate);
-        projectsData = this.preparePortfolio(rawProjectsData);
-        var result = template(projectsData);
-        $('#projects-grid').html(result);
-        this.createLinks();
     },
 
     prepareProject: function (rawProjectData) {
@@ -88,7 +89,7 @@ jQuery(document).ready(function() {
           projectData.modules[i].src = rawProjectData.project.modules[i].sizes.original;
 
         }
-        else{
+        else {
           projectData.modules[i].isEmbed = true;
           projectData.modules[i].embed = rawProjectData.project.modules[i].embed
 
@@ -189,18 +190,6 @@ jQuery(document).ready(function() {
       }
     },
 
-    setPortfolio: function () {
-      if (sessionStorage.getItem('behanceProjects')) {
-          this.setPortfolioTemplate();
-      } else {
-          $.getJSON(this.behanceProjectsAPI(), function(projects) {
-              var data = JSON.stringify(projects);
-              sessionStorage.setItem('behanceProjects', data);
-              this.setPortfolioTemplate();
-          });
-      }
-    },
-
     createLinks: function () {
       that = this;
       $('.portfolio-item a').on('click', function(e){
@@ -209,9 +198,79 @@ jQuery(document).ready(function() {
       });
     },
 
+    setPortfolioTemplate: function () {
+        var rawProjectsData = JSON.parse(sessionStorage.getItem('behanceProjects')),
+            rawTemplate = $('#portfolio-template').html(),
+            template    = Handlebars.compile(rawTemplate);
+        projectsData = this.preparePortfolio(rawProjectsData);
+        var result = template(projectsData);
+        $('#projects-grid').html(result);
+        this.createLinks();
+    },
+
+    isotopeInit: function () {
+      $(window).on("load", function () {
+      setTimeout(function() {
+        var $container = $('#projects-grid');
+        $container.isotope({
+          itemSelector: '.portfolio-item',
+          layoutMode: 'fitRows',
+        });
+        $container.imagesLoaded( function() {
+          $container.isotope('layout');
+        });
+        $('.all-filter').click(function(){
+        $container.isotope({filter: '*'});
+        });
+
+        $('.print-filter').click(function(){
+          $container.isotope({filter: '.print'});
+        });
+
+        $('.web-filter').click(function(){
+          $container.isotope({filter: '.web'});
+        });
+
+        $('.illustration-filter').click(function(){
+          $container.isotope({filter: '.illustration'});
+        });
+
+        $('.typographie-filter').click(function(){
+          $container.isotope({filter: '.typographie'});
+        });
+
+        $('.video-filter').click(function(){
+          $container.isotope({filter: '.video'});
+        });
+
+        $('.mode-filter').click(function(){
+          $container.isotope({filter: '.mode'});
+        });
+      },3000);
+      });
+
+    },
+
     init: function () {
       s = this.settings;
-      this.setPortfolio();
+
+      // we first check if behance data has already been stored
+      if (sessionStorage.getItem('behanceProjects')) {
+
+          this.setPortfolioTemplate();
+
+      } else {
+
+          var that = this;
+          $.getJSON(this.behanceProjectsAPI(), function (projects) {
+              var data = JSON.stringify(projects);
+              sessionStorage.setItem('behanceProjects', data);
+              that.setPortfolioTemplate();
+          });
+
+      }
+
+      this.isotopeInit();
     }
 
   }
@@ -219,56 +278,6 @@ jQuery(document).ready(function() {
   Portfolio.init();
 
 
-  /***** Behance stuff *******/
-
-  // var apiKey  = 'zdinRP5GJarvCOa3PWiQxYb94dPyc9Xx';
-  // var userID  = 'hellovincent';
-  //
-  // var behanceProjectsAPI = 'http://www.behance.net/v2/users/'+ userID +'/projects?callback=?&api_key='+ apiKey+'&per_page=25';
-  //
-  // var behanceProjectAPI = function(id){
-  //   return 'http://www.behance.net/v2/projects/'+id+'?callback=?&api_key='+ apiKey;
-  // };
-
-  /***** Portfolio *******/
-  $(window).on("load", function(){
-  setTimeout(function(){  var $container = $('#projects-grid');
-    $container.isotope({
-      itemSelector: '.portfolio-item',
-      layoutMode: 'fitRows',
-    });
-    $container.imagesLoaded( function() {
-      $container.isotope('layout');
-    });
-    $('.all-filter').click(function(){
-    $container.isotope({filter: '*'});
-  });
-
-  $('.print-filter').click(function(){
-    $container.isotope({filter: '.print'});
-  });
-
-  $('.web-filter').click(function(){
-    $container.isotope({filter: '.web'});
-  });
-
-  $('.illustration-filter').click(function(){
-    $container.isotope({filter: '.illustration'});
-  });
-
-  $('.typographie-filter').click(function(){
-    $container.isotope({filter: '.typographie'});
-  });
-
-  $('.video-filter').click(function(){
-    $container.isotope({filter: '.video'});
-  });
-
-  $('.mode-filter').click(function(){
-    $container.isotope({filter: '.mode'});
-  });
-  },3000);
-  });
 
   //FORMS
   $('input').on('focus',function(){

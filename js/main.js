@@ -282,8 +282,6 @@ jQuery(document).ready(function() {
 
   var Form = (function () {
 
-    var self = {};
-
     function clientSideValidation () {
       var validated = true;
       $(".contact-form-container input, .contact-form-container textarea").each(function(){
@@ -302,54 +300,55 @@ jQuery(document).ready(function() {
       return validated;
     }
 
-    self.init = function () {
+    return {
+      init : function () {
 
-      $(".submit-btn").click(function() {
+        $(".submit-btn").click(function() {
+            debugger;
 
-          if (clientSideValidation()) //everything looks good! proceed...
-          {
-              console.log('valid');
-              //get input field values data to be sent to server
-              post_data = {
-                  'user_name'     : $('input[name=name]').val(),
-                  'user_email'    : $('input[name=email]').val(),
-                  'subject'       : $('input[name=sujet]').val(),
-                  'msg'           : $('textarea[name=textarea]').val()
-              };
+            if (clientSideValidation()) //everything looks good! proceed...
+            {
+                console.log('valid');
+                //get input field values data to be sent to server
+                post_data = {
+                    'user_name'     : $('input[name=name]').val(),
+                    'user_email'    : $('input[name=email]').val(),
+                    'subject'       : $('input[name=sujet]').val(),
+                    'msg'           : $('textarea[name=textarea]').val()
+                };
 
-              //Ajax post data to server
-              $.post('contact-me.php', post_data, function(response){
-                  if(response.type == 'error'){ //load json data from server and output message
-                      output = '<p class="error">'+response.text+'</p>';
-                  }else{
-                      output = '<p class="success">'+response.text+'</p>';
-                      //reset values in all input fields
-                      $(".contact-form-container  input, .contact-form-container textarea").val('');
-                      //$(".contact-form-container #contact_body").slideUp(); //hide form after success
-                  }
-                  $(".contact-form-container").html(output);
-              }, 'json');
+                //Ajax post data to server
+                $.post('contact-me.php', post_data, function(response){
+                    if(response.type == 'error'){ //load json data from server and output message
+                        output = '<p class="error">'+response.text+'</p>';
+                    }else{
+                        output = '<p class="success">'+response.text+'</p>';
+                        //reset values in all input fields
+                        $(".contact-form-container  input, .contact-form-container textarea").val('');
+                        //$(".contact-form-container #contact_body").slideUp(); //hide form after success
+                    }
+                    $(".contact-form-container").html(output);
+                }, 'json');
+            }
+        });
+
+        //reset previously set border colors and hide all message on .keyup()
+        $("#contact_form  input[required=true], #contact_form textarea[required=true]").keyup(function() {
+            $(this).css('border-color','');
+            $("#result").slideUp();
+        });
+
+        $('input').on('focus',function(){
+          $(this).parent().addClass('input--filled');
+        });
+        $('input').on('blur',function(){
+
+          if ($(this).val() === ''){
+            $(this).parent().removeClass('input--filled');
           }
-      });
-
-      //reset previously set border colors and hide all message on .keyup()
-      $("#contact_form  input[required=true], #contact_form textarea[required=true]").keyup(function() {
-          $(this).css('border-color','');
-          $("#result").slideUp();
-      });
-
-      $('input').on('focus',function(){
-        $(this).parent().addClass('input--filled');
-      });
-      $('input').on('blur',function(){
-
-        if ($(this).val() === ''){
-          $(this).parent().removeClass('input--filled');
-        }
-      });
+        });
+      }
     }
-
-    return self;
   })();
 
   Portfolio.init();
